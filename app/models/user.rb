@@ -5,9 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          authentication_keys: [:username]
 
-  before_create :set_role
+  before_validation :set_role
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
+
+  validates :name, presence: true, if: -> { self.type == 'Operator' }
 
   def email_required?
     false

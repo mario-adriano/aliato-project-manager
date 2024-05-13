@@ -1,0 +1,27 @@
+<div class="container p-4 ml-10">
+  <h1 class="text-2xl font-bold mb-4">Lista de Operadores</h1>
+  <%= link_to 'Novo Operador', new_operator_path, class: 'bg-customOrange hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mb-4 inline-block' %>
+  
+  <table class="min-w-full bg-white">
+    <thead>
+      <tr>
+        <th class="py-2 px-4 border-b border-gray-300 text-left">Nome</th>
+        <th class="py-2 px-4 border-b border-gray-300 text-left">Username</th>
+        <th class="py-2 px-4 border-b border-gray-300 text-left">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td class="py-2 px-4 border-b border-gray-300"><%= user.name %></td>
+          <td class="py-2 px-4 border-b border-gray-300"><%= user.username %></td>
+          <td class="py-2 px-4 border-b border-gray-300">
+            <%= link_to 'Editar', edit_operator_path(user), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded' %>
+            <%= link_to 'Resetar Senha', reset_password_operator_path(user), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

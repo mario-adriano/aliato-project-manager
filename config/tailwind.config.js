@@ -15,6 +15,9 @@ module.exports = {
       colors: {
         customOrange: '#fe5000',
       },
+      width:{
+        'custom-752': '752px',
+      },
     },
   },
   plugins: [

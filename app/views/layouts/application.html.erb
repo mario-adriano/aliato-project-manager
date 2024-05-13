@@ -9,6 +9,20 @@
       <%= javascript_importmap_tags %>
   </head>
   <body>
-    <main><%= yield %></main>
+    <main>
+      <% if user_signed_in?%>
+        <div class="flex">
+          <%= render 'layouts/sidebar' %>
+          <div class="flex-1 flex flex-col">
+            <%= render 'layouts/header' %>
+            <div class="p-4">
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <%= yield %>
+      <% end %>
+    </main>
   </body>
 </html>
