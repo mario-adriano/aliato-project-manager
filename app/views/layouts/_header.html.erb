@@ -1,6 +1,10 @@
 <div class="flex items-center justify-between bg-white shadow p-4">
   <div class="flex items-center">
-    
+    <% unless current_page?(root_url) %>
+      <a href="javascript:history.back()" class="text-blue-500 hover:text-blue-700 font-bold mb-4 inline-block">← Voltar</a>
+    <% else %>
+      <span class="text-blue-300 font-bold mb-4 inline-block">← Voltar</span>
+    <% end %>
   </div>
   <div class="flex items-center space-x-4">
     <span class="text-gray-700 font-medium">Usuário: <%= current_user.username %></span>
