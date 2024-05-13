@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_13_002213) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_13_170545) do
   create_table "users", force: :cascade do |t|
     t.string "email", default: ""
     t.string "encrypted_password", default: "", null: false
@@ -22,6 +22,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_13_002213) do
     t.string "username"
     t.string "type"
     t.string "name"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_Users_on_deleted_at"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end

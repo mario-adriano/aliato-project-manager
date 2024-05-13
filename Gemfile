@@ -71,3 +71,5 @@ gem "devise", "~> 4.9"
 gem "tailwindcss-rails", "~> 2.6"
 
 gem "foreman", "~> 0.88.1"
+
+gem "paranoia", "~> 2.6"
