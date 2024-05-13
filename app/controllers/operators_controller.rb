@@ -1,6 +1,6 @@
 class OperatorsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:edit, :update, :reset_password, :update_password]
+  before_action :set_user, only: [:edit, :update, :reset_password, :update_password, :destroy]
 
   def index
     @users = User.where.not(type: 'Admin').all
@@ -13,21 +13,39 @@ class OperatorsController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to operators_path, notice: 'Operador criado com sucesso.'
+      redirect_to operators_path, flash: { success: 'Operador criado com sucesso.' }
     else
-      render :new
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace('errors', partial: 'layouts/errors', locals: { resource: @user })
+          ]
+        end
+        format.html { render :new }
+      end
     end
+  rescue ActiveRecord::RecordNotUnique
+    redirect_to operators_path, flash: { danger: 'Nome de usuário já existe' }
   end
 
   def edit
   end
 
   def update
-    if @user.update(user_params)
-      redirect_to operators_path, notice: 'Operador atualizado com sucesso.'
+    if @user.update(user_edit_params)
+      redirect_to operators_path, flash: { success: 'Operador atualizado com sucesso.' }
     else
-      render :edit
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace('errors', partial: 'layouts/errors', locals: { resource: @user })
+          ]
+        end
+        format.html { render :edit }
+      end
     end
+  rescue ActiveRecord::RecordNotUnique
+    redirect_to operators_path, flash: { danger: 'Nome de usuário já existe' }
   end
 
   def reset_password
@@ -35,9 +53,24 @@ class OperatorsController < ApplicationController
 
   def update_password
     if @user.update(user_password_reset_params)
-      redirect_to operators_path, notice: 'Senha do operador atualizado com sucesso.'
+      redirect_to operators_path, flash: { success:  'Senha do operador atualizado com sucesso.' }
     else
-      render :reset_password
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace('errors', partial: 'layouts/errors', locals: { resource: @user })
+          ]
+        end
+        format.html { render :reset_password }
+      end
+    end
+  end
+
+  def destroy
+    if @user.destroy
+      redirect_to operators_path, flash: { success:  'Operador deletado com sucesso.' }
+    else
+      redirect_to operators_path, flash: { danger: 'Não é possível deletar Operador' }
     end
   end
 
@@ -49,6 +82,10 @@ class OperatorsController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :username, :password, :password_confirmation)
+  end
+
+  def user_edit_params
+    params.require(:operator).permit(:name, :username)
   end
 
   def user_password_reset_params

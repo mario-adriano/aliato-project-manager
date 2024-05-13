@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   before_validation :set_role
 
+  before_create :set_name_user_admin
+
   validates :username, presence: true, uniqueness: { case_sensitive: false }
 
   validates :name, presence: true, if: -> { self.type == 'Operator' }
@@ -37,5 +39,9 @@ class User < ApplicationRecord
     else
       self.type = 'Operator'
     end
+  end
+
+  def set_name_user_admin
+    self.name = self.username if self.type == 'Admin'
   end
 end
