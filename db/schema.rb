@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_13_170545) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_13_212745) do
+  create_table "phases", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.boolean "is_start"
+    t.boolean "is_end"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_phases_on_deleted_at"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: ""
     t.string "encrypted_password", default: "", null: false

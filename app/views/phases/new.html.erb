@@ -1,0 +1,23 @@
+<div class="container p-4 ml-10">
+  <h1 class="text-2xl font-bold mb-4">Nova Fase</h1>
+  <%= form_for @phase, url: phases_path do |f| %>
+    <turbo-frame id="errors">
+      <%= render 'layouts/errors', resource: @phase %>
+    </turbo-frame>
+
+    <div class="mb-4">
+      <%= f.label :name, 'Nome da fase', class: 'block text-gray-700 font-medium mb-2' %>
+      <%= f.text_field :name, class: 'w-custom-752 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :description, 'Descrição', class: 'block text-gray-700 font-medium mb-2' %>
+      <%= f.text_field :description, class: 'w-custom-752 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
+    </div>
+
+    <div class="flex items-center space-x-4">
+      <%= f.submit 'Cadastrar', class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded' %>
+      <button type="reset" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Cancelar</button>
+    </div>
+  <% end %>
+</div>
