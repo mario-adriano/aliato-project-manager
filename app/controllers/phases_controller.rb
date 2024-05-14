@@ -1,8 +1,8 @@
 class PhasesController < ApplicationController
-  before_action :set_phase, only: [:show, :edit, :update, :destroy, :set_as_starting_phase, :set_as_ending_phase]
+  before_action :set_phase, only: [:show, :edit, :update, :destroy, :set_as_ending_phase]
 
   def index
-    @phases = Phase.all
+    @phases = Phase.all.order('position ASC')
   end
 
   def show
@@ -46,15 +46,19 @@ class PhasesController < ApplicationController
     end
   end
 
-  def set_as_starting_phase
-    @phase.set_as_starting_phase
-    redirect_to phases_url, flash: { success: 'Fase selecionada com início com sucesso.' }
-  rescue ActiveRecord::Rollback
-    redirect_to phases_path, flash: { danger: 'Não é possivel selecionada fase com início.' }
+  def update_order_phases
+    @phase = Phase.find(params[:format])
+
+    Phase.transaction do
+      @phase.insert_at(params[:position].to_i + 1)
+      @phase.update(is_end: false) if params[:position].to_i == 0
+    end
+
+    head :no_content
   end
 
   def set_as_ending_phase
-    if @phase.is_start
+    if @phase.position == 1
       redirect_to phases_path, flash: { danger: 'Fase de início não pode ser fim.' }
     else
       @phase.update(is_end: !@phase.is_end)
@@ -75,11 +79,12 @@ class PhasesController < ApplicationController
   end
 
   private
-    def set_phase
-      @phase = Phase.find(params[:id])
-    end
 
-    def phase_params
-      params.require(:phase).permit(:name, :description)
-    end
+  def set_phase
+    @phase = Phase.find(params[:id])
+  end
+
+  def phase_params
+    params.require(:phase).permit(:name, :description)
+  end
 end

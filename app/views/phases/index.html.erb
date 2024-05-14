@@ -2,39 +2,43 @@
   <%= render 'layouts/flash' %>
 
   <h1 class="text-2xl font-bold mb-4">Lista de Fases</h1>
-  <%= link_to 'Nova Fase', new_phase_path, class: 'bg-customOrange hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mb-4 inline-block' %>
-
-  <table class="min-w-full bg-white">
-    <thead>
-      <tr>
-        <th class="py-2 px-4 border-b border-gray-300 text-left">Nome</th>
-        <th class="py-2 px-4 border-b border-gray-300 text-left">Descrição</th>
-        <th class="py-2 px-4 border-b border-gray-300 text-left">Inicio de Fase</th>
-        <th class="py-2 px-4 border-b border-gray-300 text-left">Fim de Fase</th>
-        <th class="py-2 px-4 border-b border-gray-300 text-left">Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @phases.each do |phase| %>
+  <div class="flex items-center mb-4">
+    <%= link_to 'Nova Fase', new_phase_path, class: 'bg-customOrange hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mr-4' %>
+  </div>
+    <table class="min-w-full bg-white">
+      <thead>
         <tr>
-          <td class="py-2 px-4 border-b border-gray-300"><%= phase.name_capitalize %></td>
-          <td class="py-2 px-4 border-b border-gray-300"><%= phase.description %></td>
-          <td class="py-2 px-4 border-b border-gray-300">
-            <%= button_to "#{phase.is_start ? 'Sim' : 'Não'}", set_as_starting_phase_path(phase), method: :patch, class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded' %>
-          </td>
-          <td class="py-2 px-4 border-b border-gray-300">
-
-            <%= render 'end_of_phase', phase: phase %>
-
-          </td>
-          <td class="py-2 px-4 border-b border-gray-300">
-            <%= link_to 'Editar', edit_phase_path(phase), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded' %>
-            <button type="button" onclick="openModal(<%= phase.id %>)" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded">Excluir</button>
-          </td>
+          <th class="py-2 px-4 border-b border-gray-300 text-left"></th>
+          <th class="py-2 px-4 border-b border-gray-300 text-left">Nome</th>
+          <th class="py-2 px-4 border-b border-gray-300 text-left">Descrição</th>
+          <th class="py-2 px-4 border-b border-gray-300 text-left">Fim de Fase</th>
+          <th class="py-2 px-4 border-b border-gray-300 text-left">Ações</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody data-controller="sortable">
+        <% @phases.each do |phase| %>
+          <tr data-sortable-url="<%= update_order_phases_phases_path(phase) %>">
+            <td class="py-2 px-4 border-b border-gray-300" data-sortable-handle>
+              <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/>
+              </svg>
+            </td>
+            <td class="py-2 px-4 border-b border-gray-300"><%= phase.name_capitalize %></td>
+            <td class="py-2 px-4 border-b border-gray-300"><%= phase.description %></td>
+            <td class="py-2 px-4 border-b border-gray-300">
+
+              <%= render 'end_of_phase', phase: phase %>
+
+            </td>
+            <td class="py-2 px-4 border-b border-gray-300">
+              <%= link_to 'Editar', edit_phase_path(phase), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded' %>
+              <button type="button" onclick="openModal(<%= phase.id %>)" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded">Excluir</button>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
 
   <!-- Modal -->
   <div id="deleteModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
@@ -58,4 +62,29 @@
   function closeModal() {
     document.getElementById('deleteModal').classList.add('hidden');
   }
+
+  document.getElementById('saveOrderButton').addEventListener('click', function(e) {
+    e.preventDefault();
+
+    var formData = new FormData();
+    formData.append('_method', 'PATCH');
+
+    var inputs = document.querySelectorAll('input[type="number"]');
+    inputs.forEach(function(input) {
+        formData.append(input.name, input.value);
+    });
+
+    fetch('<%= update_order_phases_phases_path %>', {
+        method: 'PUT',
+        body: formData,
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+    })
+    .then(function(responseData) {
+        window.location.reload();
+    })
+  });
+
 </script>

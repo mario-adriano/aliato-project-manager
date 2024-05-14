@@ -1,10 +1,14 @@
 class Phase < ApplicationRecord
   acts_as_paranoid
+  acts_as_list top_of_list: 0
 
-  before_create :first_phase
+  before_validation :first_phase
+
+  before_create :set_position
   before_save -> { self.name.downcase! }
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :position, uniqueness: { scope: :deleted_at, message: "a ordem deve ser única" }, if: -> { position.nil? }
 
   def destroy
     unless self.is_start
@@ -26,21 +30,18 @@ class Phase < ApplicationRecord
     name.capitalize
   end
 
-  def set_as_starting_phase
-    Phase.transaction do
-      Phase.update_all(is_start: false)
-
-      self.is_start = true
-      self.is_end = false
-      save
-
-      raise ActiveRecord::Rollback unless Phase.where(is_start: true).one?
-    end
-  end
-
   private
 
   def first_phase
-    self.is_start = true if Phase.count == 0
+    if Phase.count == 0
+        self.is_start = true
+        self.position = 1
+    end
+  end
+
+  def set_position
+    unless Phase.count == 0
+      self.position = Phase.all.order('position ASC').last.position + 1
+    end
   end
 end
