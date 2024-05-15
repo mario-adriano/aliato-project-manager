@@ -13,6 +13,8 @@ class OperatorsController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.is_reset_password = true
+
     if @user.save
       redirect_to operators_path, flash: { success: 'Operador criado com sucesso.' }
     else

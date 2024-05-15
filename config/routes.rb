@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   resources :reset_password, only: [:index, :update]
 
+  resources :individuals
+
   # get 'home/index'
 
   # get "up" => "rails/health#show", as: :rails_health_check

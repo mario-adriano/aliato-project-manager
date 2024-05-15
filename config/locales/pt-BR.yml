@@ -10,6 +10,11 @@ pt-BR:
         username: 'Usuário'
         password: 'Senha'
         password_confirmation: 'Confirmar senha'
+      individual:
+        name: 'Nome'
+        phone: 'Telefone'
+        document_number: 'CPF'
+        email: 'E-mail'
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'

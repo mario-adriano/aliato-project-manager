@@ -1,15 +1,19 @@
-<div class="flex flex-col h-screen bg-gray-800 text-white w-64">
+<div class="fixed top-0 left-0 h-full bg-gray-800 text-white w-64">
   <div class="flex items-center justify-center h-20 border-b border-gray-700">
     <img src="https://aliato.eng.br/assets/img/ui/logotipo/color-dark@2x.png" alt="Logo" class="h-12">
   </div>
-  <div class="flex-1 p-4">
+  <div class="overflow-auto p-2 h-full">
     <ul>
-      <% if current_user.admin?%>
+      <% if current_user.admin? %>
         <li class="mb-4">
-          <%= link_to 'Cadastro de Operador', operators_path, class: "#{controller.controller_name == "operators" ? 'text-gray-500' : 'text-white'} hover:text-gray-400" %>
+          <%= link_to 'Cadastro de Operador', operators_path, class: "#{controller.controller_name == 'operators' ? 'text-gray-500' : 'text-white'} hover:text-gray-400" %>
         </li>
         <li>
-          <%= link_to 'Cadastro de Fase de Projeto', phases_path, class: "#{controller.controller_name == "phases" ? 'text-gray-500' : 'text-white'} hover:text-gray-400" %>
+          <%= link_to 'Cadastro de Fase de Projeto', phases_path, class: "#{controller.controller_name == 'phases' ? 'text-gray-500' : 'text-white'} hover:text-gray-400" %>
+        </li>
+      <% elsif current_user.operator? %>
+        <li class="mb-4">
+          <%= link_to 'Cadastro de Pessoa Física', individuals_path, class: "#{controller.controller_name == 'individuals' ? 'text-gray-500' : 'text-white'} hover:text-gray-400" %>
         </li>
       <% end %>
     </ul>
