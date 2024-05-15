@@ -75,3 +75,5 @@ gem "foreman", "~> 0.88.1"
 gem "paranoia", "~> 2.6"
 
 gem "acts_as_list", "~> 1.1"
+
+gem "rails-i18n", "~> 7.0"
