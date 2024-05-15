@@ -1,5 +1,6 @@
 class OperatorsController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_admin_authorization
   before_action :set_user, only: [:edit, :update, :reset_password, :update_password, :destroy]
 
   def index
@@ -52,6 +53,8 @@ class OperatorsController < ApplicationController
   end
 
   def update_password
+    @user.is_reset_password = true
+
     if @user.update(user_password_reset_params)
       redirect_to operators_path, flash: { success:  'Senha do operador atualizado com sucesso.' }
     else

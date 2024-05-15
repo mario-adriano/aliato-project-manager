@@ -4,12 +4,14 @@
   </div>
   <div class="flex-1 p-4">
     <ul>
-      <li class="mb-4">
-        <%= link_to 'Cadastro de Operador', operators_path, class: "#{controller.controller_name == "operators" ? 'text-gray-500' : 'text-white'} hover:text-gray-400" %>
-      </li>
-      <li>
-        <%= link_to 'Cadastro de Fase de Projeto', phases_path, class: "#{controller.controller_name == "phases" ? 'text-gray-500' : 'text-white'} hover:text-gray-400" %>
-      </li>
+      <% if current_user.admin?%>
+        <li class="mb-4">
+          <%= link_to 'Cadastro de Operador', operators_path, class: "#{controller.controller_name == "operators" ? 'text-gray-500' : 'text-white'} hover:text-gray-400" %>
+        </li>
+        <li>
+          <%= link_to 'Cadastro de Fase de Projeto', phases_path, class: "#{controller.controller_name == "phases" ? 'text-gray-500' : 'text-white'} hover:text-gray-400" %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </div>

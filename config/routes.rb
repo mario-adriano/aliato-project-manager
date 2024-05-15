@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   end
   patch 'phases/:id/set_as_ending_phase', to: 'phases#set_as_ending_phase', as: :set_as_ending_phase
 
+  resources :reset_password, only: [:index, :update]
+
   # get 'home/index'
 
   # get "up" => "rails/health#show", as: :rails_health_check

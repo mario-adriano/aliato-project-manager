@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_14_202137) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_14_232138) do
   create_table "phases", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.boolean "is_start"
     t.boolean "is_end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -36,6 +35,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_14_202137) do
     t.string "type"
     t.string "name"
     t.datetime "deleted_at"
+    t.boolean "is_reset_password", default: false
     t.index ["deleted_at"], name: "index_Users_on_deleted_at"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true

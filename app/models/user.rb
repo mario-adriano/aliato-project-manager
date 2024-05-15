@@ -22,6 +22,18 @@ class User < ApplicationRecord
     false
   end
 
+  def admin?
+    self.type == "Admin"
+  end
+
+  def operator?
+    self.type == "Operator"
+  end
+
+  def requires_reset_password?
+    is_reset_password && operator?
+  end
+
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     if username = conditions.delete(:username)
