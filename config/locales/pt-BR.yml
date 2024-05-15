@@ -15,6 +15,11 @@ pt-BR:
         phone: 'Telefone'
         document_number: 'CPF'
         email: 'E-mail'
+      company:
+        name: 'Razão Social'
+        phone: 'Telefone'
+        document_number: 'CNPJ'
+        email: 'E-mail'
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'

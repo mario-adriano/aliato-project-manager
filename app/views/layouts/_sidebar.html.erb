@@ -15,6 +15,9 @@
         <li class="mb-4">
           <%= link_to 'Cadastro de Pessoa Física', individuals_path, class: "#{controller.controller_name == 'individuals' ? 'text-gray-500' : 'text-white'} hover:text-gray-400" %>
         </li>
+        <li class="mb-4">
+          <%= link_to 'Cadastro de Pessoa Jurídica', companies_path, class: "#{controller.controller_name == 'companies' ? 'text-gray-500' : 'text-white'} hover:text-gray-400" %>
+        </li>
       <% end %>
     </ul>
   </div>
