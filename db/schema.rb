@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_16_104504) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_16_110204) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,6 +46,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_16_104504) do
     t.index ["position"], name: "index_phases_on_position"
   end
 
+  create_table "project_files", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.binary "file_data"
+    t.string "file_name"
+    t.decimal "price", precision: 8, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_project_files_on_project_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "phase_id", null: false
@@ -76,6 +86,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_16_104504) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "project_files", "projects"
   add_foreign_key "projects", "phases"
   add_foreign_key "projects", "users"
 end
