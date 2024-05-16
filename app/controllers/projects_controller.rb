@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
     @project.user_id = current_user.id
 
     if @project.save
-      redirect_to projects_path
+      redirect_to projects_path(phase_id: @project.phase.id)
     else
       respond_to do |format|
         format.turbo_stream do
@@ -62,6 +62,11 @@ class ProjectsController < ApplicationController
 
   def update
     if !@project.phase.is_end && @project.update(update_project_params)
+      if params[:project][:files][1]
+        # params[:project][:files].each do |file|
+          @project.project_files.create(file: params[:project][:files][1])
+        # end
+      end
       redirect_to projects_path(phase_id: @project.phase.id)
     else
       respond_to do |format|
@@ -73,6 +78,11 @@ class ProjectsController < ApplicationController
         format.html { render :edit }
       end
     end
+  end
+
+  def download_file
+    project_file = ProjectFile.find(params[:project_id])
+    send_data project_file.file_data, filename: project_file.file_name, type: "application/octet-stream", disposition: 'attachment'
   end
 
   private

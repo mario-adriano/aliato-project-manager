@@ -11,7 +11,7 @@
         <li>
           <%= link_to 'Cadastro de Fase de Projeto', phases_path, class: "#{controller.controller_name == 'phases' ? 'text-white' : 'text-gray-500'} hover:text-gray-400" %>
         </li>
-      <% elsif current_user.operator? %>
+      <% elsif current_user.operator? && !current_user.is_reset_password %>
         <li class="mb-4">
           <%= link_to 'Cadastro de Pessoa Física', individuals_path, class: "#{controller.controller_name == 'individuals' ? 'text-white' : 'text-gray-500'} hover:text-gray-400" %>
         </li>

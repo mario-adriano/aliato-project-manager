@@ -1,9 +1,11 @@
 <div class="flex items-center justify-between bg-white shadow p-4">
   <div class="flex items-center pl-64">
-    <% unless current_page?(root_url) %>
-      <a href="javascript:history.back()" class="text-blue-500 hover:text-blue-700 font-bold mb-4 inline-block">← Voltar</a>
-    <% else %>
-      <span class="text-blue-300 font-bold mb-4 inline-block">← Voltar</span>
+    <% unless current_user.is_reset_password %>
+      <% unless current_page?(root_url) %>
+        <a href="javascript:history.back()" class="text-blue-500 hover:text-blue-700 font-bold mb-4 inline-block">← Voltar</a>
+      <% else %>
+        <span class="text-blue-300 font-bold mb-4 inline-block">← Voltar</span>
+      <% end %>
     <% end %>
   </div>
   <div class="flex items-center space-x-4">

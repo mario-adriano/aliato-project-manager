@@ -26,6 +26,12 @@ Rails.application.routes.draw do
 
   resources :projects do
     patch :update_phase
+
+    resources :project_files, only: [] do
+      member do
+        get 'download', to: 'projects#download_file'
+      end
+    end
   end
 
   # get 'home/index'
