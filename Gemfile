@@ -79,3 +79,5 @@ gem "acts_as_list", "~> 1.1"
 gem "rails-i18n", "~> 7.0"
 
 gem "cpf_cnpj", "~> 0.5.0"
+
+gem "pg", "~> 1.5"

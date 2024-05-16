@@ -10,4 +10,3 @@ export default class extends Controller {
     }, 200);
   }
 }
-
