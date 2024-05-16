@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_16_110204) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_16_114410) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,6 +63,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_16_110204) do
     t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "client_id", null: false
+    t.index ["client_id"], name: "index_projects_on_client_id"
     t.index ["code"], name: "index_projects_on_code", unique: true
     t.index ["phase_id"], name: "index_projects_on_phase_id"
     t.index ["user_id"], name: "index_projects_on_user_id"
@@ -87,6 +89,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_16_110204) do
   end
 
   add_foreign_key "project_files", "projects"
+  add_foreign_key "projects", "clients"
   add_foreign_key "projects", "phases"
   add_foreign_key "projects", "users"
 end

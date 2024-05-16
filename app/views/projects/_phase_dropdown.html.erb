@@ -1,0 +1,22 @@
+<div id="phase_dropdown">
+  <div id="phase-dropdown" class="relative" data-controller="dropdown">
+    <button data-action="dropdown#toggle" class="bg-blue-500 text-white font-semibold py-2 px-4 rounded inline-flex items-center">
+      <span><%= @project.phase.name.capitalize %></span>
+      <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+      </svg>
+    </button>
+    <div id="dropdown" class="absolute hidden bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4">
+      <% if next_phase = @project.phase.next_phase %>
+        <%= button_to "-> #{next_phase.name.capitalize}", project_update_phase_path(@project, phase_id: next_phase.id), method: :patch, data: { turbo_frame: "phase-dropdown" }, style: "margin:4px;" %>
+      <% end %>
+      <% if prev_phase = @project.phase.prev_phase %>
+        <%= button_to "<- #{prev_phase.name.capitalize}", project_update_phase_path(@project, phase_id: prev_phase.id), method: :patch, data: { turbo_frame: "phase-dropdown" }, style: "margin:4px;" %>
+      <% end %>
+      <hr>
+      <% Phase.where(is_end: true).each do |phase| %>
+        <%= button_to "#{phase.name.capitalize}", project_update_phase_path(@project, phase_id: phase.id), method: :patch, data: { turbo_frame: "phase-dropdown" }, style: "margin:4px;" %>
+      <% end %>
+    </div>
+  </div>
+</div>

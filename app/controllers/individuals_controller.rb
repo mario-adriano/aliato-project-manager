@@ -5,8 +5,8 @@ class IndividualsController < ApplicationController
 
   def index
     if params[:query].present?
-      @individuals = Individual.where("name LIKE ?", "%#{params[:query]}%")
-                               .or(Individual.where("document_number LIKE ?", "%#{params[:query]}%"))
+      @individuals = Individual.where("name ILIKE ?", "%#{params[:query]}%")
+                               .or(Individual.where("document_number ILIKE ?", "%#{params[:query]}%"))
     else
       @individuals = Individual.all
     end

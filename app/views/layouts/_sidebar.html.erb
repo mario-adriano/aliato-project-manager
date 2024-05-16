@@ -6,18 +6,31 @@
     <ul>
       <% if current_user.admin? %>
         <li class="mb-4">
-          <%= link_to 'Cadastro de Operador', operators_path, class: "#{controller.controller_name == 'operators' ? 'text-gray-500' : 'text-white'} hover:text-gray-400" %>
+          <%= link_to 'Cadastro de Operador', operators_path, class: "#{controller.controller_name == 'operators' ? 'text-white' : 'text-gray-500'} hover:text-gray-400" %>
         </li>
         <li>
-          <%= link_to 'Cadastro de Fase de Projeto', phases_path, class: "#{controller.controller_name == 'phases' ? 'text-gray-500' : 'text-white'} hover:text-gray-400" %>
+          <%= link_to 'Cadastro de Fase de Projeto', phases_path, class: "#{controller.controller_name == 'phases' ? 'text-white' : 'text-gray-500'} hover:text-gray-400" %>
         </li>
       <% elsif current_user.operator? %>
         <li class="mb-4">
-          <%= link_to 'Cadastro de Pessoa Física', individuals_path, class: "#{controller.controller_name == 'individuals' ? 'text-gray-500' : 'text-white'} hover:text-gray-400" %>
+          <%= link_to 'Cadastro de Pessoa Física', individuals_path, class: "#{controller.controller_name == 'individuals' ? 'text-white' : 'text-gray-500'} hover:text-gray-400" %>
         </li>
         <li class="mb-4">
-          <%= link_to 'Cadastro de Pessoa Jurídica', companies_path, class: "#{controller.controller_name == 'companies' ? 'text-gray-500' : 'text-white'} hover:text-gray-400" %>
+          <%= link_to 'Cadastro de Pessoa Jurídica', companies_path, class: "#{controller.controller_name == 'companies' ? 'text-white' : 'text-gray-500'} hover:text-gray-400" %>
         </li>
+        <li class="mb-4">
+          <%= link_to 'Visualizar Projetos', projects_path, class: "#{controller.controller_name == 'projects' && params[:phase_id].nil? ? 'text-white' : 'text-gray-500'} hover:text-gray-400" %>
+        </li>
+        <% Phase.where(is_end: [false, nil]).order('position ASC').each do |phase| %>
+          <li class="mb-4">
+            <%= link_to "• #{phase.name.capitalize} (#{Project.where(phase_id: phase.id).count})", projects_path(phase_id: phase.id), class: "#{controller.controller_name == 'projects' && params[:phase_id].to_i == phase.id ? 'text-white' : 'text-gray-500'} hover:text-gray-400" %>
+          </li>
+        <% end %>
+        <% Phase.where(is_end: true).order('position ASC').each do |phase| %>
+          <li class="mb-4">
+            <%= link_to "• #{phase.name.capitalize}", projects_path(phase_id: phase.id), class: "#{controller.controller_name == 'projects' && params[:phase_id].to_i == phase.id ? 'text-white' : 'text-gray-500'} hover:text-gray-400" %>
+          </li>
+        <% end %>
       <% end %>
     </ul>
   </div>

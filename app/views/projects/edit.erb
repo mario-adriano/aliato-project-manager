@@ -1,0 +1,81 @@
+<div class="container p-4 ml-10">
+  <h1 class="text-2xl font-bold mb-4">Projeto - <%= @project.id %></h1>
+
+  <%= turbo_frame_tag "phase_dropdown" do %>
+    <div id="phase-dropdown" class="relative" data-controller="dropdown">
+      <button data-action="dropdown#toggle" class="bg-blue-500 text-white font-semibold py-2 px-4 rounded inline-flex items-center">
+        <span><%= @project.phase.name.capitalize %></span>
+        <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+        </svg>
+
+      </button>
+      <% unless @project.phase.is_end %>
+        <div id="dropdown" class="absolute hidden bg-white shadow-lg rounded px-4 pt-6 pb-8 mb-4">
+          <% if next_phase = @project.phase.next_phase %>
+            <%= button_to "-> #{next_phase.name.capitalize}", project_update_phase_path(@project, phase_id: next_phase.id), method: :patch, data: { turbo_frame: "phase-dropdown" }, style: "margin:4px;" %>
+          <% end %>
+          <% if prev_phase = @project.phase.prev_phase %>
+            <%= button_to "<- #{prev_phase.name.capitalize}", project_update_phase_path(@project, phase_id: prev_phase.id), method: :patch, data: { turbo_frame: "phase-dropdown" }, style: "margin:4px;" %>
+          <% end %>
+          <hr>
+          <% Phase.where(is_end: true).each do |phase| %>
+            <%= button_to "#{phase.name.capitalize}", project_update_phase_path(@project, phase_id: phase.id), method: :patch, data: { turbo_frame: "phase-dropdown" }, style: "margin:4px;" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <br>
+
+  <%= form_for @project, url: project_path(@project) do |f| %>
+    <turbo-frame id="errors">
+      <%= render 'layouts/errors', resource: @project %>
+    </turbo-frame>
+
+    <div class="mb-4">
+      <%= label_tag :name, (@client.type == 'Company' ? 'Razão Social': 'Nome'), class: 'block text-gray-700 font-medium mb-2' %>
+      <%= text_field_tag :name, @client.name, disabled: true, class: 'w-custom-752 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
+    </div>
+
+    <% if @client.type == 'Company' %>
+      <div class="mb-4">
+        <%= label_tag :company_name, 'Nome Fantasia', class: 'block text-gray-700 font-medium mb-2' %>
+        <%= text_field_tag :company_name, @client.company_name, disabled: true, class: 'w-custom-752 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
+      </div>
+    <% end %>
+
+    <div class="mb-4">
+      <%= label_tag :document_number, (@client.type == 'Company' ? 'CNPJ': 'CPF'), class: 'block text-gray-700 font-medium mb-2' %>
+      <%= text_field_tag :document_number, @client.document_number, disabled: true, class: 'w-custom-752 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
+    </div>
+
+    <div class="mb-4">
+      <%= label_tag :email, 'E-mail', class: 'block text-gray-700 font-medium mb-2' %>
+      <%= text_field_tag :email, @client.email, disabled: true, class: 'w-custom-752 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
+    </div>
+
+    <div class="mb-4">
+      <%= label_tag :phone, 'Telefone', class: 'block text-gray-700 font-medium mb-2' %>
+      <%= text_field_tag :phone, @client.phone, disabled: true, class: 'w-custom-752 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
+    </div>
+
+    <div class="mb-4">
+      <%= label_tag :created_at, 'Data da criação', class: 'block text-gray-700 font-medium mb-2' %>
+      <%= text_field_tag :created_at, @project.created_at.strftime('%d/%m/%Y - %H:%M'), disabled: true, class: 'w-custom-752 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :description, 'Observação', class: 'block text-gray-700 font-medium mb-2' %>
+      <%= f.text_area :description, style: 'height: 200px;', class: 'w-custom-752 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange', disabled: @project.phase.is_end ? 'disabled' : nil %>
+    </div>
+
+    <% unless @project.phase.is_end %>
+      <div class="flex items-center space-x-4">
+        <%= f.submit 'Atualizar', class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded' %>
+        <button type="reset" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Cancelar</button>
+      </div>
+    <% end %>
+  <% end %>
+</div>

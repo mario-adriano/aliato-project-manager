@@ -24,6 +24,10 @@ Rails.application.routes.draw do
 
   resources :companies
 
+  resources :projects do
+    patch :update_phase
+  end
+
   # get 'home/index'
 
   # get "up" => "rails/health#show", as: :rails_health_check

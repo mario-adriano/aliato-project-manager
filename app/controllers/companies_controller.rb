@@ -6,8 +6,8 @@ class CompaniesController < ApplicationController
   def index
     if params[:query].present?
       @companies = Company.where("name LIKE ?", "%#{params[:query]}%")
-                               .or(Company.where("document_number LIKE ?", "%#{params[:query]}%"))
-                               .or(Company.where("company_name LIKE ?", "%#{params[:query]}%"))
+                               .or(Company.where("document_number ILIKE ?", "%#{params[:query]}%"))
+                               .or(Company.where("company_name ILIKE ?", "%#{params[:query]}%"))
     else
       @companies = Company.all
     end

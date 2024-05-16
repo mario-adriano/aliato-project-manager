@@ -11,7 +11,7 @@ class Phase < ApplicationRecord
   validates :position, uniqueness: { scope: :deleted_at, message: "a ordem deve ser única" }, if: -> { position.nil? }
 
   def destroy
-    unless self.is_start
+    unless self.position == 1
       super
     else
       raise AliatoProjectManager::NonRemovableValueError
@@ -19,7 +19,7 @@ class Phase < ApplicationRecord
   end
 
   def delete
-    unless self.is_start
+    unless self.position == 1
       super
     else
       raise AliatoProjectManager::NonRemovableValueError
@@ -30,11 +30,18 @@ class Phase < ApplicationRecord
     name.capitalize
   end
 
+  def prev_phase
+    Phase.where("position < ?", position).where(is_end: [false, nil]).order('position DESC').first
+  end
+
+  def next_phase
+    Phase.where("position > ?", position).where(is_end: [false, nil]).first
+  end
+
   private
 
   def first_phase
     if Phase.count == 0
-        self.is_start = true
         self.position = 1
     end
   end

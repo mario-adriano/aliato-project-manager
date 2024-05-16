@@ -1,5 +1,4 @@
 class Company < Client
-  validates :company_name, presence: true
   validate :valid_cnpj
 
   def cnpj

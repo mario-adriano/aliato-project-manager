@@ -43,6 +43,10 @@
             <td class="py-2 px-4 border-b border-gray-300">
               <%= link_to 'Editar', edit_individual_path(individual), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded', data: { turbo: false } %>
               <button type="button" onclick="openModal(<%= individual.id %>)" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded">Excluir</button>
+              <%= link_to 'Criar Projeto', new_project_path(client_id: individual.id), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded', data: { turbo: false } %>
+              <% if individual.projects.present? %>
+                <%= link_to 'Visualizar Projetos', projects_path(client_id: individual.id), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded', data: { turbo: false } %>
+              <% end %>
             </td>
           </tr>
         <% end %>

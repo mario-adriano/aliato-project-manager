@@ -1,6 +1,8 @@
 class Client < ApplicationRecord
   acts_as_paranoid
 
+  has_many :projects
+
   validates :name, presence: true
   validates :phone, presence: true
   validates :document_number, presence: true
