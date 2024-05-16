@@ -17,6 +17,7 @@ pt-BR:
         email: 'E-mail'
       company:
         name: 'Razão Social'
+        company_name: 'Nome Fantasia'
         phone: 'Telefone'
         document_number: 'CNPJ'
         email: 'E-mail'

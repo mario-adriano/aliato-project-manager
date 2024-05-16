@@ -2,33 +2,53 @@
   <%= render 'layouts/flash' %>
 
   <h1 class="text-2xl font-bold mb-4">Lista de Pessoas Físicas</h1>
-  <%= link_to 'Novo Cliente', new_individual_path, class: 'bg-customOrange hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mb-4 inline-block' %>
 
-  <table class="min-w-full bg-white">
-    <thead>
-      <tr>
-        <th class="py-2 px-4 border-b border-gray-300 text-left">Nome</th>
-        <th class="py-2 px-4 border-b border-gray-300 text-left">CPF</th>
-        <th class="py-2 px-4 border-b border-gray-300 text-left">Telefone</th>
-        <th class="py-2 px-4 border-b border-gray-300 text-left">Email</th>
-        <th class="py-2 px-4 border-b border-gray-300 text-left">Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @individuals.each do |individual| %>
+<div class="flex items-center justify-between mb-4 w-full">
+  <div>
+    <%= link_to 'Novo Cliente', new_individual_path, class: 'bg-customOrange hover:bg-orange-600 text-white font-bold py-2 px-4 rounded inline-block' %>
+  </div>
+  
+  <div>
+    <%= form_with(url: individuals_path(turbo_frame: "search_results"),
+          method: "get",
+          data: { "turbo-frame": "search_results",
+                  controller: "search",
+                  "search-target": "form" }) do |f| %>
+        <%= f.search_field :query,
+              placeholder: "Pesquisar",
+              autocomplete: "off",
+              data: { action: "input->search#search" } %>
+    <% end %>
+  </div>
+</div>
+
+  <turbo-frame id="search_results">
+    <table class="min-w-full bg-white">
+      <thead>
         <tr>
-          <td class="py-2 px-4 border-b border-gray-300"><%= individual.name %></td>
-          <td class="py-2 px-4 border-b border-gray-300"><%= individual.cpf %></td>
-          <td class="py-2 px-4 border-b border-gray-300"><%= individual.phone %></td>
-          <td class="py-2 px-4 border-b border-gray-300"><%= individual.email %></td>
-          <td class="py-2 px-4 border-b border-gray-300">
-            <%= link_to 'Editar', edit_individual_path(individual), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded' %>
-            <button type="button" onclick="openModal(<%= individual.id %>)" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded">Excluir</button>
-          </td>
+          <th class="py-2 px-4 border-b border-gray-300 text-left">Nome</th>
+          <th class="py-2 px-4 border-b border-gray-300 text-left">CPF</th>
+          <th class="py-2 px-4 border-b border-gray-300 text-left">Telefone</th>
+          <th class="py-2 px-4 border-b border-gray-300 text-left">Email</th>
+          <th class="py-2 px-4 border-b border-gray-300 text-left">Ações</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @individuals.each do |individual| %>
+          <tr>
+            <td class="py-2 px-4 border-b border-gray-300"><%= individual.name %></td>
+            <td class="py-2 px-4 border-b border-gray-300"><%= individual.cpf %></td>
+            <td class="py-2 px-4 border-b border-gray-300"><%= individual.phone %></td>
+            <td class="py-2 px-4 border-b border-gray-300"><%= individual.email %></td>
+            <td class="py-2 px-4 border-b border-gray-300">
+              <%= link_to 'Editar', edit_individual_path(individual), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded' %>
+              <button type="button" onclick="openModal(<%= individual.id %>)" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded">Excluir</button>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </turbo-frame>
 
   <!-- Modal -->
   <div id="deleteModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">

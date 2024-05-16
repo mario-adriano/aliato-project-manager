@@ -4,7 +4,12 @@ class IndividualsController < ApplicationController
   before_action :set_individual, only: [:edit, :update, :destroy]
 
   def index
-    @individuals = Individual.all
+    if params[:query].present?
+      @individuals = Individual.where("name LIKE ?", "%#{params[:query]}%")
+                               .or(Individual.where("document_number LIKE ?", "%#{params[:query]}%"))
+    else
+      @individuals = Individual.all
+    end
   end
 
   def new
