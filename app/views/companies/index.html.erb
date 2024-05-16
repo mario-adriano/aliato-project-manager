@@ -30,7 +30,6 @@
           <th class="py-2 px-4 border-b border-gray-300 text-left">Nome Fantasia</th>
           <th class="py-2 px-4 border-b border-gray-300 text-left">CNPJ</th>
           <th class="py-2 px-4 border-b border-gray-300 text-left">Telefone</th>
-          <th class="py-2 px-4 border-b border-gray-300 text-left">Email</th>
           <th class="py-2 px-4 border-b border-gray-300 text-left">Ações</th>
         </tr>
       </thead>
@@ -41,11 +40,13 @@
             <td class="py-2 px-4 border-b border-gray-300"><%= company.company_name %></td>
             <td class="py-2 px-4 border-b border-gray-300"><%= company.cnpj %></td>
             <td class="py-2 px-4 border-b border-gray-300"><%= company.phone %></td>
-            <td class="py-2 px-4 border-b border-gray-300"><%= company.email %></td>
             <td class="py-2 px-4 border-b border-gray-300">
               <%= link_to 'Editar', edit_company_path(company), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded', data: { turbo: false } %>
               <button type="button" onclick="openModal(<%= company.id %>)" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded">Excluir</button>
               <%= link_to 'Criar Projeto', new_project_path(client_id: company.id), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded', data: { turbo: false } %>
+              <% if company.projects.present? %>
+                <%= link_to 'Visualizar Projetos', projects_path(client_id: company.id), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded', data: { turbo: false } %>
+              <% end %>
             </td>
           </tr>
         <% end %>
