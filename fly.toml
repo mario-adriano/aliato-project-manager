@@ -1,0 +1,28 @@
+# fly.toml app configuration file generated for aliato-project-manager on 2024-05-18T16:15:30-03:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'aliato-project-manager'
+primary_region = 'gru'
+console_command = '/rails/bin/rails console'
+
+[build]
+
+[deploy]
+  release_command = "./bin/rails db:migrate"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  size = 'shared-cpu-1x'
+
+[[statics]]
+  guest_path = '/rails/public'
+  url_prefix = '/'

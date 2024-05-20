@@ -14,7 +14,7 @@ class Phase < ApplicationRecord
     unless self.position == 1
       super
     else
-      raise AliatoProjectManager::NonRemovableValueError
+      raise Exceptions::NonRemovableValueError
     end
   end
 
@@ -22,7 +22,7 @@ class Phase < ApplicationRecord
     unless self.position == 1
       super
     else
-      raise AliatoProjectManager::NonRemovableValueError
+      raise Exceptions::NonRemovableValueError
     end
   end
 

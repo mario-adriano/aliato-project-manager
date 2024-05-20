@@ -75,7 +75,7 @@ class PhasesController < ApplicationController
   def destroy
     @phase.destroy
     redirect_to phases_url, flash: { success: 'Fase do projeto deletado com sucesso.' }
-  rescue AliatoProjectManager::NonRemovableValueError
+  rescue Exceptions::NonRemovableValueError
     redirect_to phases_path, flash: { danger: 'Fase início não pode ser removido.' }
   end
 
