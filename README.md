@@ -20,25 +20,30 @@ Siga estes passos para iniciar a aplicação:
 
    ```sh
    git clone https://github.com/mario-adriano/aliato-project-manager.git
+   ```
 
 2. **Construa e execute os contêineres Docker:**
 
    ```sh
    sudo docker-compose up
+   ```
 
 3. **Construa o banco:**
 
    ```sh
    rails db:create
+   ```
 
 4. **Para migrar o banco:**
 
   ```sh
   rails db:migrate
+  ```
 
 5. **Inicie o servidor Rails:**
 
    ```sh
    rails s
+   ```
 
 A aplicação deverá estar acessível em http://localhost:3000.
