@@ -1,6 +1,8 @@
 # Aliato Project Manager
 
-Aplicação para gerenciamento de projetos de cliente.
+Aplicação para gerenciamento de projetos de clientes.
+
+Esta aplicação foi desenvolvida como parte do Projeto Integrador (PI) da UNIVESP.
 
 ## Pré-requisitos
 
