@@ -32,6 +32,7 @@ Siga estes passos para iniciar a aplicação:
    rails db:create
 
 4. **Para migrar o banco:**
+
   ```sh
   rails db:migrate
 
