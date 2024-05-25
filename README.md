@@ -1,24 +1,47 @@
-# README
+# Aliato Project Manager
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Aplicação para gerenciamento de projetos de cliente.
 
-Things you may want to cover:
+## Pré-requisitos
 
-* Ruby version
+Certifique-se de ter os seguintes itens instalados em sua máquina:
 
-* System dependencies
+- **Ruby 3.2.2**: Necessário para executar a aplicação Rails.
+- **Docker**: Para containerização.
+- **Docker Compose**: Para gerenciar aplicações Docker multi-contêiner.
 
-* Configuration
+## Começando
 
-* Database creation
+Siga estes passos para iniciar a aplicação:
 
-* Database initialization
+1. **Clone o repositório:**
 
-* How to run the test suite
+   ```sh
+   git clone https://github.com/mario-adriano/aliato-project-manager.git
+   ```
 
-* Services (job queues, cache servers, search engines, etc.)
+2. **Construa e execute os contêineres Docker:**
 
-* Deployment instructions
+   ```sh
+   sudo docker-compose up
+   ```
 
-* ...
+3. **Construa o banco:**
+
+   ```sh
+   rails db:create
+   ```
+
+4. **Execute a migração:**
+
+   ```sh
+   rails db:migrate
+   ```
+
+5. **Inicie o servidor Rails:**
+
+   ```sh
+   rails s
+   ```
+
+A aplicação deverá estar acessível em http://localhost:3000.
