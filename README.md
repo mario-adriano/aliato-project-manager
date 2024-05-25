@@ -36,9 +36,9 @@ Siga estes passos para iniciar a aplicação:
 
 4. **Para migrar o banco:**
 
-  ```sh
-  rails db:migrate
-  ```
+   ```sh
+   rails db:migrate
+   ```
 
 5. **Inicie o servidor Rails:**
 
