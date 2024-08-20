@@ -20,9 +20,25 @@ export default class extends Controller {
 
   onEnd(event) {
     const { newIndex, item } = event;
-    const url = item.dataset["sortableUrl"]
+    const url = item.dataset["sortableUrl"];
+    const phaseId = parseInt(item.dataset.phaseId);
+    const isEnd = newIndex === 0;
+
     put(url, {
-      body: JSON.stringify({ position: newIndex })
+      body: JSON.stringify({ position: newIndex, isEnd })
+    }).then(() => {
+      if (isEnd) {
+        this.updateFinalPhaseButton(phaseId);
+      }
     });
+  }
+
+  updateFinalPhaseButton(phaseId) {
+    const turboFrameId = "refresh_button_"+phaseId;
+    const turboFrame = document.querySelector('form[data-turbo-frame="' + turboFrameId + '"]');
+
+    if (turboFrame) {
+      turboFrame.requestSubmit();
+    }
   }
 }

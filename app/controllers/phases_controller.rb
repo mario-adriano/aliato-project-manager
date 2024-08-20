@@ -72,6 +72,25 @@ class PhasesController < ApplicationController
     end
   end
 
+  # Refreshes a phase by finding it based on the provided ID and rendering a Turbo Stream response.
+  #
+  # Params:
+  # - id: The ID of the phase to refresh.
+  #
+  # Example usage:
+  #   refresh_phase(id: 1)
+  #
+  # Returns:
+  #   The Turbo Stream response that replaces the specified phase with the updated content.
+  def refresh_phase
+    @phase = Phase.find(params[:id])
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace("is_end_#{@phase.id}", partial: "end_of_phase", locals: { phase: @phase })
+      end
+    end
+  end
+
   def destroy
     @phase.destroy
     redirect_to phases_url, flash: { success: 'Fase do projeto deletado com sucesso.' }

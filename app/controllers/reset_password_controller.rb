@@ -23,6 +23,9 @@ class ResetPasswordController < ApplicationController
 
   private
 
+  # Retrieves the password reset parameters from the request parameters.
+  #
+  # @return [ActionController::Parameters] The permitted password reset parameters.
   def password_reset_params
     params.require(:operator).permit(:password, :password_confirmation)
   end

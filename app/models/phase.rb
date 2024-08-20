@@ -30,6 +30,14 @@ class Phase < ApplicationRecord
     name.capitalize
   end
 
+  # Returns the previous phase based on the current phase's position.
+  #
+  # This method queries the database for a phase with a position less than the current phase's position,
+  # and where the is_end attribute is either false or nil. It then orders the results in descending order
+  # based on the position and returns the first phase.
+  #
+  # Returns:
+  # - The previous phase if found, or nil if no previous phase exists.
   def prev_phase
     Phase.where("position < ?", position).where(is_end: [false, nil]).order('position DESC').first
   end

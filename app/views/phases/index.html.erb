@@ -17,7 +17,7 @@
       </thead>
       <tbody data-controller="sortable">
         <% @phases.each do |phase| %>
-          <tr data-sortable-url="<%= update_order_phases_phases_path(phase) %>">
+          <tr data-sortable-url="<%= update_order_phases_phases_path(phase) %>" data-phase-id="<%= phase.id %>">
             <td class="py-2 px-4 border-b border-gray-300" data-sortable-handle>
               <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/>
