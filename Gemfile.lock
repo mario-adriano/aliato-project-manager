@@ -128,7 +128,7 @@ GEM
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
     io-console (0.7.2)
-    irb (1.13.1)
+    irb (1.14.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jaro_winkler (1.6.0)
@@ -165,16 +165,6 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.3)
-    nokogiri (1.16.5-aarch64-linux)
-      racc (~> 1.4)
-    nokogiri (1.16.5-arm-linux)
-      racc (~> 1.4)
-    nokogiri (1.16.5-arm64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.16.5-x86-linux)
-      racc (~> 1.4)
-    nokogiri (1.16.5-x86_64-darwin)
-      racc (~> 1.4)
     nokogiri (1.16.5-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
@@ -234,10 +224,10 @@ GEM
     rainbow (3.1.1)
     rake (13.2.1)
     rbs (2.8.4)
-    rdoc (6.6.3.1)
+    rdoc (6.7.0)
       psych (>= 4.0.0)
     regexp_parser (2.9.2)
-    reline (0.5.7)
+    reline (0.5.9)
       io-console (~> 0.5)
     responders (3.1.1)
       actionpack (>= 5.2)
@@ -289,26 +279,11 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.7.3-aarch64-linux)
-    sqlite3 (1.7.3-arm-linux)
-    sqlite3 (1.7.3-arm64-darwin)
-    sqlite3 (1.7.3-x86-linux)
-    sqlite3 (1.7.3-x86_64-darwin)
     sqlite3 (1.7.3-x86_64-linux)
     stimulus-rails (1.3.3)
       railties (>= 6.0.0)
-    stringio (3.1.0)
+    stringio (3.1.1)
     strscan (3.1.0)
-    tailwindcss-rails (2.6.0)
-      railties (>= 7.0.0)
-    tailwindcss-rails (2.6.0-aarch64-linux)
-      railties (>= 7.0.0)
-    tailwindcss-rails (2.6.0-arm-linux)
-      railties (>= 7.0.0)
-    tailwindcss-rails (2.6.0-arm64-darwin)
-      railties (>= 7.0.0)
-    tailwindcss-rails (2.6.0-x86_64-darwin)
-      railties (>= 7.0.0)
     tailwindcss-rails (2.6.0-x86_64-linux)
       railties (>= 7.0.0)
     thor (1.3.1)
@@ -339,11 +314,6 @@ GEM
     zeitwerk (2.6.14)
 
 PLATFORMS
-  aarch64-linux
-  arm-linux
-  arm64-darwin
-  x86-linux
-  x86_64-darwin
   x86_64-linux
 
 DEPENDENCIES
