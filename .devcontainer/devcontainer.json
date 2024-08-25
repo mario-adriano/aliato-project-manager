@@ -5,6 +5,18 @@
   "dockerComposeFile": "compose.yaml",
   "service": "rails-app",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "rebornix.Ruby",
+        "shopify.ruby-lsp",
+        "kaiwood.endwise",
+        "misogi.ruby-rubocop",
+        "aki77.rails-db-schema",
+        "hridoy.rails-snippets"
+      ]
+    }
+  },
 
   // Features to add to the dev container. More info: https://containers.dev/features.
   "features": {
