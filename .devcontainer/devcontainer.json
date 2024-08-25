@@ -8,7 +8,6 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "rebornix.Ruby",
         "shopify.ruby-lsp",
         "kaiwood.endwise",
         "misogi.ruby-rubocop",
