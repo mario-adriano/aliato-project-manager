@@ -1,7 +1,7 @@
 class CompaniesController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_operator_authorization
-  before_action :set_company, only: [:edit, :update, :destroy]
+  before_action :set_company, only: [ :edit, :update, :destroy ]
 
   def index
     if params[:query].present?
@@ -21,12 +21,12 @@ class CompaniesController < ApplicationController
     @company = Company.new(company_params)
 
     if @company.save
-      redirect_to companies_path, flash: { success: 'Cliente criado com sucesso.' }
+      redirect_to companies_path, flash: { success: "Cliente criado com sucesso." }
     else
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.replace('errors', partial: 'layouts/errors', locals: { resource: @company })
+            turbo_stream.replace("errors", partial: "layouts/errors", locals: { resource: @company })
           ]
         end
         format.html { render :new }
@@ -39,12 +39,12 @@ class CompaniesController < ApplicationController
 
   def update
     if @company.update(company_params)
-      redirect_to companies_path, flash: { success: 'Cliente atualizado com sucesso.' }
+      redirect_to companies_path, flash: { success: "Cliente atualizado com sucesso." }
     else
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.replace('errors', partial: 'layouts/errors', locals: { resource: @company })
+            turbo_stream.replace("errors", partial: "layouts/errors", locals: { resource: @company })
           ]
         end
         format.html { render :edit }
@@ -54,9 +54,9 @@ class CompaniesController < ApplicationController
 
   def destroy
     if @company.destroy
-      redirect_to companies_path, flash: { success:  'Cliente deletado com sucesso.' }
+      redirect_to companies_path, flash: { success:  "Cliente deletado com sucesso." }
     else
-      redirect_to companies_path, flash: { danger: 'Não é possível deletar Cliente' }
+      redirect_to companies_path, flash: { danger: "N\u00E3o \u00E9 poss\u00EDvel deletar Cliente" }
     end
   end
 
