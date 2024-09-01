@@ -8,12 +8,14 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "rebornix.Ruby",
         "shopify.ruby-lsp",
         "kaiwood.endwise",
         "misogi.ruby-rubocop",
         "aki77.rails-db-schema",
-        "hridoy.rails-snippets"
+        "hridoy.rails-snippets",
+        "mhutchie.git-graph",
+        "donjayamanne.githistory",
+        "donjayamanne.git-extension-pack"
       ]
     }
   },
