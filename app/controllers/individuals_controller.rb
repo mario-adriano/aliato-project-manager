@@ -1,14 +1,14 @@
 class IndividualsController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_operator_authorization
-  before_action :set_individual, only: [:edit, :update, :destroy]
+  before_action :set_individual, only: [ :edit, :update, :destroy ]
 
   def index
     if params[:query].present?
       @individuals = Individual.where("name ILIKE ?", "%#{params[:query]}%")
                                .or(Individual.where("document_number ILIKE ?", "%#{params[:query]}%"))
     else
-      @individuals = Individual.all
+      @individuals = Individual.all.includes(:projects)
     end
   end
 
@@ -20,12 +20,12 @@ class IndividualsController < ApplicationController
     @individual = Individual.new(individual_params)
 
     if @individual.save
-      redirect_to individuals_path, flash: { success: 'Cliente criado com sucesso.' }
+      redirect_to individuals_path, flash: { success: "Cliente criado com sucesso." }
     else
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.replace('errors', partial: 'layouts/errors', locals: { resource: @individual })
+            turbo_stream.replace("errors", partial: "layouts/errors", locals: { resource: @individual })
           ]
         end
         format.html { render :new }
@@ -38,12 +38,12 @@ class IndividualsController < ApplicationController
 
   def update
     if @individual.update(individual_params)
-      redirect_to individuals_path, flash: { success: 'Cliente atualizado com sucesso.' }
+      redirect_to individuals_path, flash: { success: "Cliente atualizado com sucesso." }
     else
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.replace('errors', partial: 'layouts/errors', locals: { resource: @individual })
+            turbo_stream.replace("errors", partial: "layouts/errors", locals: { resource: @individual })
           ]
         end
         format.html { render :edit }
@@ -53,9 +53,9 @@ class IndividualsController < ApplicationController
 
   def destroy
     if @individual.destroy
-      redirect_to individuals_path, flash: { success:  'Cliente deletado com sucesso.' }
+      redirect_to individuals_path, flash: { success:  "Cliente deletado com sucesso." }
     else
-      redirect_to individuals_path, flash: { danger: 'Não é possível deletar Cliente' }
+      redirect_to individuals_path, flash: { danger: "N\u00E3o \u00E9 poss\u00EDvel deletar Cliente" }
     end
   end
 

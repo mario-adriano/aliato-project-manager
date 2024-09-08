@@ -2,65 +2,48 @@ source "https://rubygems.org"
 
 ruby "3.2.2"
 
-# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1.3", ">= 7.1.3.2"
-
-# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
-
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
-
-# Use the Puma web server [https://github.com/puma/puma]
-gem "puma", ">= 5.0"
-
-# Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails"
-
-# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
-
-# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails"
-
-# Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem "jbuilder"
-
-# Use Redis adapter to run Action Cable in production
-# gem "redis", ">= 4.0.1"
-
-# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
-# gem "kredis"
-
-# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ windows jruby ]
-
-# Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", require: false
-
-gem "rubocop-rails-omakase", require: false
-
-# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "acts_as_list", "~> 1.1" # Add capabilities for sorting and reordering a number of objects in a list
+# gem "bcrypt", "~> 3.1.7" # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
+gem "bootsnap", require: false # Reduces boot times through caching; required in config/boot.rb
+gem "cpf_cnpj", "~> 0.5.0" # Validate CPF and CNPJ numbers
+gem "devise", "~> 4.9" # Flexible authentication solution for Rails with Warden
+gem "foreman", "~> 0.88.1"  # Manage Procfile-based applications
+# gem "image_processing", "~> 1.2" # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
+gem "importmap-rails" # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
+gem "jbuilder" # Build JSON APIs with ease [https://github.com/rails/jbuilder]
+# gem "kredis" # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
+gem "paranoia", "~> 2.6" # Soft delete for ActiveRecord
+gem "pg", "~> 1.5" # Use PostgreSQL as the database for Active Record
+gem "puma", ">= 5.0" # Use the Puma web server [https://github.com/puma/puma]
+gem "rails", "~> 7.1.3", ">= 7.1.3.2" # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+gem "rails-i18n", "~> 7.0"  # Ruby on Rails I18n support
+# gem "redis", ">= 4.0.1" # Use Redis adapter to run Action Cable in production
+gem "rubocop-rails-omakase", require: false # A curated RuboCop configuration for Rails projects following community best practices.
+gem "sprockets-rails" # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
+gem "sqlite3", "~> 1.4" # Use sqlite3 as the database for Active Record
+gem "stimulus-rails" # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+gem "tailwindcss-rails", "~> 2.6" # Use Tailwind CSS with Rails
+gem "turbo-rails" # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
+gem "tzinfo-data", platforms: %i[ windows jruby ] # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 
 group :development, :test do
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri windows ]
+  gem "debug", platforms: %i[ mri windows ] # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
 end
 
 group :development do
-  gem "ruby-lsp", require: false
-  # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem "web-console"
-
-  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
-
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
+  gem "annotate", "~> 3.2.0" # Annotate Rails classes with schema and routes info
+  gem "brakeman", "~> 6.2.1" # Brakeman is a static analysis tool which checks applications for security vulnerabilities
+  gem "bullet", "~> 7.2.0"
+  # gem "debugbar", "0.3.0" # Debugging toolbar for Rails applications
+  gem "dotenv-rails", "~> 3.1.2" # Autoload dotenv in Rails.
+  gem "dockerfile-rails", ">= 1.6" # Use Dockerfile templates for Rails development
+  gem "lol_dba", "~> 2.4.0" # lol_dba is a small package of rake tasks that scan your application models and displays a list of columns that probably should be indexed
+  gem "pghero", "~> 3.6.0" # A performance dashboard for Postgres
+  gem "pg_query", "~> 5.1.0" # Parse and analyze SQL queries in Ruby
+  gem "rack-mini-profiler" # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
+  gem "ruby-lsp", require: false # Language Server Protocol for Ruby
+  # gem "spring" # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
+  gem "web-console" # Use console on exceptions pages [https://github.com/rails/web-console]
 end
 
 group :test do
@@ -68,21 +51,3 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-
-gem "devise", "~> 4.9"
-
-gem "tailwindcss-rails", "~> 2.6"
-
-gem "foreman", "~> 0.88.1"
-
-gem "paranoia", "~> 2.6"
-
-gem "acts_as_list", "~> 1.1"
-
-gem "rails-i18n", "~> 7.0"
-
-gem "cpf_cnpj", "~> 0.5.0"
-
-gem "pg", "~> 1.5"
-
-gem "dockerfile-rails", ">= 1.6", group: :development
