@@ -1,6 +1,6 @@
 <div class="px-8 py-4 mx-auto">
   <h1 class="text-2xl font-bold mb-4">Nova Fase</h1>
-  <%= form_for @phase, url: phases_path do |f| %>
+  <%= form_for @phase, url: admin_phases_path do |f| %>
     <turbo-frame id="errors">
       <%= render 'layouts/errors', resource: @phase %>
     </turbo-frame>

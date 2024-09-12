@@ -3,21 +3,21 @@
 
   <h1 class="mb-4 text-2xl font-bold">Lista de Fases</h1>
   <div class="flex items-center mb-4">
-    <%= link_to 'Nova Fase', new_phase_path, class: 'bg-customOrange hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mr-4' %>
+    <%= link_to 'Nova Fase', new_admin_phase_path, class: 'bg-customOrange hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mr-4' %>
   </div>
     <table class="min-w-full bg-white">
       <thead class="border-b border-gray-200 ">
         <tr class="border-b border-gray-200">
           <th class="py-2 pr-4 text-left"></th>
+          <th class="py-2 pr-4 text-left text-nowrap">Nome</th>
           <th class="py-2 pr-4 text-left text-nowrap">Descrição</th>
           <th class="py-2 pr-4 text-left text-nowrap">Fim de Fase</th>
-          <th class="py-2 pr-4 text-left text-nowrap">Nome</th>
           <th class="py-2 pr-4 text-left text-nowrap">Ações</th>
         </tr>
       </thead>
       <tbody data-controller="sortable">
         <% @phases.each do |phase| %>
-          <tr data-sortable-url="<%= update_order_phases_phases_path(phase) %>" data-phase-id="<%= phase.id %>" class="border-b border-gray-200">
+          <tr data-sortable-url="<%= update_order_phases_admin_phases_path(phase) %>" data-phase-id="<%= phase.id %>" class="border-b border-gray-200">
             <td class="py-2 pr-4" data-sortable-handle>
               <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/>
@@ -31,7 +31,7 @@
 
             </td>
             <td class="flex flex-wrap gap-1 py-2 pr-4">
-              <%= link_to 'Editar', edit_phase_path(phase), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded text-nowrap' %>
+              <%= link_to 'Editar', edit_admin_phase_path(phase), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded text-nowrap' %>
               <button type="button" onclick="openModal(<%= phase.id %>)" class="px-2 py-1 font-bold text-white bg-red-500 rounded hover:bg-red-600">Excluir</button>
             </td>
           </tr>
@@ -56,7 +56,7 @@
 <script>
   function openModal(phaseId) {
     document.getElementById('deleteModal').classList.remove('hidden');
-    document.getElementById('deleteButton').setAttribute('formaction', `/phases/${phaseId}`);
+    document.getElementById('deleteButton').setAttribute('formaction', `/admin/phases/${phaseId}`);
   }
 
   function closeModal() {
@@ -74,7 +74,7 @@
         formData.append(input.name, input.value);
     });
 
-    fetch('<%= update_order_phases_phases_path %>', {
+    fetch('<%= update_order_phases_admin_phases_path %>', {
         method: 'PUT',
         body: formData,
         headers: {

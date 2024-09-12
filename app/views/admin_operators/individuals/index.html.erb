@@ -5,11 +5,19 @@
 
 <div class="flex flex-wrap items-center justify-between w-full gap-2 mb-4">
   <div>
-    <%= link_to 'Novo Cliente', new_individual_path, class: 'bg-customOrange hover:bg-orange-600 text-white font-bold py-2 px-4 rounded inline-block' %>
+    <%= link_to 'Novo Cliente', new_admin_operators_individual_path, class: 'hidden md:block bg-customOrange hover:bg-orange-600 text-white font-bold py-2 px-4 rounded inline-block' %>
+  </div>
+
+  <div class="md:hidden fixed bottom-4 right-4">
+    <%= link_to new_admin_operators_individual_path, class: 'w-14 h-14 bg-customOrange text-white rounded-full flex items-center justify-center shadow-lg' do %>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+      </svg>
+    <% end %>
   </div>
   
   <div>
-    <%= form_with(url: individuals_path(turbo_frame: "search_results"),
+    <%= form_with(url: admin_operators_individuals_path(turbo_frame: "search_results"),
           method: "get",
           data: { "turbo-frame": "search_results",
                   controller: "search",
@@ -41,11 +49,11 @@
             <td class="py-2 pr-4"><%= individual.phone %></td>
             <td class="py-2 pr-4"><%= individual.email %></td>
             <td class="flex flex-wrap gap-2 py-2 pr-4">
-              <%= link_to 'Editar', edit_individual_path(individual), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded text-nowrap text-nowrap', data: { turbo: false } %>
+              <%= link_to 'Editar', edit_admin_operators_individual_path(individual), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded text-nowrap text-nowrap', data: { turbo: false } %>
               <button type="button" onclick="openModal(<%= individual.id %>)" class="px-2 py-1 font-bold text-white bg-red-500 rounded hover:bg-red-600">Excluir</button>
-              <%= link_to 'Criar Projeto', new_project_path(client_id: individual.id), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded text-nowrap text-nowrap', data: { turbo: false } %>
+              <%= link_to 'Criar Projeto', new_admin_operators_project_path(client_id: individual.id), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded text-nowrap text-nowrap', data: { turbo: false } %>
               <% if individual.projects.present? %>
-                <%= link_to 'Visualizar Projetos', projects_path(client_id: individual.id), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded text-nowrap text-nowrap', data: { turbo: false } %>
+                <%= link_to 'Visualizar Projetos', admin_operators_projects_path(client_id: individual.id), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded text-nowrap text-nowrap', data: { turbo: false } %>
               <% end %>
             </td>
           </tr>
@@ -70,7 +78,7 @@
 <script>
   function openModal(userId) {
     document.getElementById('deleteModal').classList.remove('hidden');
-    document.getElementById('deleteButton').setAttribute('formaction', `/individuals/${userId}`);
+    document.getElementById('deleteButton').setAttribute('formaction', `/admin_operators/individuals/${userId}`);
   }
 
   function closeModal() {

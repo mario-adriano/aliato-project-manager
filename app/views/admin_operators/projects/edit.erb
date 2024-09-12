@@ -13,14 +13,14 @@
       <% unless @project.phase.is_end %>
         <div id="dropdown" class="absolute hidden bg-white shadow-lg rounded px-4 pt-6 pb-8 mb-4">
           <% if next_phase = @project.phase.next_phase %>
-            <%= button_to "-> #{next_phase.name.capitalize}", project_update_phase_path(@project, phase_id: next_phase.id), method: :patch, data: { turbo_frame: "phase-dropdown" }, style: "margin:4px;" %>
+            <%= button_to "-> #{next_phase.name.capitalize}", admin_operators_project_update_phase_path(@project, phase_id: next_phase.id), method: :patch, data: { turbo_frame: "phase-dropdown" }, style: "margin:4px;" %>
           <% end %>
           <% if prev_phase = @project.phase.prev_phase %>
-            <%= button_to "<- #{prev_phase.name.capitalize}", project_update_phase_path(@project, phase_id: prev_phase.id), method: :patch, data: { turbo_frame: "phase-dropdown" }, style: "margin:4px;" %>
+            <%= button_to "<- #{prev_phase.name.capitalize}", admin_operators_project_update_phase_path(@project, phase_id: prev_phase.id), method: :patch, data: { turbo_frame: "phase-dropdown" }, style: "margin:4px;" %>
           <% end %>
           <hr>
           <% Phase.where(is_end: true).each do |phase| %>
-            <%= button_to "#{phase.name.capitalize}", project_update_phase_path(@project, phase_id: phase.id), method: :patch, data: { turbo_frame: "phase-dropdown" }, style: "margin:4px;" %>
+            <%= button_to "#{phase.name.capitalize}", admin_operators_project_update_phase_path(@project, phase_id: phase.id), method: :patch, data: { turbo_frame: "phase-dropdown" }, style: "margin:4px;" %>
           <% end %>
         </div>
       <% end %>
@@ -29,7 +29,7 @@
 
   <br>
 
-  <%= form_for @project, url: project_path(@project) do |f| %>
+  <%= form_for @project, url: admin_operators_project_path(@project) do |f| %>
     <turbo-frame id="errors">
       <%= render 'layouts/errors', resource: @project %>
     </turbo-frame>

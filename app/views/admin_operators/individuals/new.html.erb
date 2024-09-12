@@ -1,23 +1,23 @@
-<div class="px-8 py-4 mx-auto">
-  <h1 class="text-2xl font-bold mb-4">Novo Cliente</h1>
-  <%= form_for @company, url: companies_path do |f| %>
+<div class="max-w-full px-8 py-4 mx-auto">
+  <h1 class="mb-4 text-2xl font-bold">Novo Cliente</h1>
+  <%= form_for @individual, url: admin_operators_individuals_path do |f| %>
     <turbo-frame id="errors">
-      <%= render 'layouts/errors', resource: @company %>
+      <%= render 'layouts/errors', resource: @individual %>
     </turbo-frame>
 
     <div class="mb-4">
-      <%= f.label :name, 'Razão Social*', class: 'block text-gray-700 font-medium mb-2' %>
-      <%= f.text_field :name, class: 'w-custom-752 max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
+      <%= f.label :name, 'Nome completo*', class: 'block text-gray-700 font-medium mb-2' %>
+      <%= f.text_field :name, class: 'w-custom-752 max-w-full max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
     </div>
 
     <div class="mb-4">
-      <%= f.label :company_name, 'Nome Fantasia', class: 'block text-gray-700 font-medium mb-2' %>
-      <%= f.text_field :company_name, class: 'w-custom-752 max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
-    </div>
-
-    <div class="mb-4">
-      <%= f.label :document_number, 'CNPJ*', class: 'block text-gray-700 font-medium mb-2' %>
+      <%= f.label :document_number, 'CPF*', class: 'block text-gray-700 font-medium mb-2' %>
       <%= f.text_field :document_number, class: 'w-custom-752 max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :rg, 'RG', class: 'block text-gray-700 font-medium mb-2' %>
+      <%= f.text_field :rg, class: 'w-custom-752 max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
     </div>
 
     <div class="mb-4">
@@ -62,7 +62,7 @@
 
     <div class="flex items-center space-x-4">
       <%= f.submit 'Cadastrar', class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded' %>
-      <button type="reset" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Resetar</button>
+      <button type="reset" class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-600">Resetar</button>
     </div>
   <% end %>
 </div>

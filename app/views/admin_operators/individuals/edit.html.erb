@@ -1,13 +1,14 @@
-<div class="max-w-full px-8 py-4 mx-auto">
-  <h1 class="mb-4 text-2xl font-bold">Novo Cliente</h1>
-  <%= form_for @individual, url: individuals_path do |f| %>
+<div class="px-8 py-4 mx-auto">
+  <h1 class="text-2xl font-bold mb-4">Editar Cliente</h1>
+  
+  <%= form_for @individual, url: admin_operators_individual_path(@individual), method: :patch do |f| %>
     <turbo-frame id="errors">
       <%= render 'layouts/errors', resource: @individual %>
     </turbo-frame>
 
     <div class="mb-4">
       <%= f.label :name, 'Nome completo*', class: 'block text-gray-700 font-medium mb-2' %>
-      <%= f.text_field :name, class: 'w-custom-752 max-w-full max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
+      <%= f.text_field :name, class: 'w-custom-752 max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
     </div>
 
     <div class="mb-4">
@@ -41,11 +42,6 @@
     </div>
 
     <div class="mb-4">
-      <%= f.label :complement, 'Complemento', class: 'block text-gray-700 font-medium mb-2' %>
-      <%= f.text_field :complement, class: 'w-custom-752 max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
-    </div>
-
-    <div class="mb-4">
       <%= f.label :neighborhood, 'Bairro', class: 'block text-gray-700 font-medium mb-2' %>
       <%= f.text_field :neighborhood, class: 'w-custom-752 max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
     </div>
@@ -60,9 +56,14 @@
       <%= f.text_field :state, class: 'w-custom-752 max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
     </div>
 
+    <div class="mb-4">
+      <%= f.label :complement, 'Complemento', class: 'block text-gray-700 font-medium mb-2' %>
+      <%= f.text_field :complement, class: 'w-custom-752 max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
+    </div>
+
     <div class="flex items-center space-x-4">
-      <%= f.submit 'Cadastrar', class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded' %>
-      <button type="reset" class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-600">Resetar</button>
+      <%= f.submit 'Atualizar', class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded' %>
+      <button type="reset" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Resetar</button>
     </div>
   <% end %>
 </div>

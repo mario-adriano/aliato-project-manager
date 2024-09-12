@@ -25,7 +25,7 @@
 #  index_clients_on_deleted_at  (deleted_at)
 #
 class Company < Client
-  alias_attribute :cpnj, :document_number
+  alias_attribute :cnpj, :document_number
 
   validate :valid_cnpj
 

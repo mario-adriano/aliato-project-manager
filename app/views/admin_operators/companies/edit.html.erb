@@ -1,7 +1,7 @@
 <div class="px-8 py-4 mx-auto">
   <h1 class="text-2xl font-bold mb-4">Editar Cliente</h1>
   
-  <%= form_for @company, url: company_path(@company), method: :patch do |f| %>
+  <%= form_for @company, url: admin_operators_company_path(@company), method: :patch do |f| %>
     <turbo-frame id="errors">
       <%= render 'layouts/errors', resource: @company %>
     </turbo-frame>

@@ -1,6 +1,6 @@
 <div class="px-8 py-4 mx-auto">
   <h1 class="text-2xl font-bold mb-4">Criar projeto</h1>
-  <%= form_for @project, url: projects_path do |f| %>
+  <%= form_for @project, url: admin_operators_projects_path do |f| %>
     <turbo-frame id="errors">
       <%= render 'layouts/errors', resource: @project %>
     </turbo-frame>

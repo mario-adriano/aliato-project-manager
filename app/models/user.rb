@@ -47,7 +47,7 @@ class User < ApplicationRecord
   end
 
   def admin?
-    self.type == "Admin"
+    self.type == "Administrator"
   end
 
   def operator?
@@ -71,13 +71,13 @@ class User < ApplicationRecord
 
   def set_role
     if User.count == 0
-      self.type = "Admin"
+      self.type = "Administrator"
     else
       self.type = "Operator"
     end
   end
 
   def set_name_user_admin
-    self.name = self.username if self.type == "Admin"
+    self.name = self.username if self.type == "Administrator"
   end
 end

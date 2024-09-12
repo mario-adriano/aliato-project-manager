@@ -2,7 +2,7 @@
   <%= render 'layouts/flash' %>
 
   <h1 class="mb-4 text-2xl font-bold">Lista de Operadores</h1>
-  <%= link_to 'Novo Operador', new_operator_path, class: 'bg-customOrange hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mb-4 inline-block' %>
+  <%= link_to 'Novo Operador', new_admin_operator_path, class: 'bg-customOrange hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mb-4 inline-block' %>
 
   <table class="min-w-full bg-white">
     <thead>
@@ -18,8 +18,8 @@
           <td class="py-2 pr-4"><%= user.name %></td>
           <td class="py-2 pr-4"><%= user.username %></td>
           <td class="flex flex-wrap gap-1 py-2 pr-4">
-            <%= link_to 'Editar', edit_operator_path(user), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded text-nowrap' %>
-            <%= link_to 'Resetar Senha', reset_password_operator_path(user), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded text-nowrap' %>
+            <%= link_to 'Editar', edit_admin_operator_path(user), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded text-nowrap' %>
+            <%= link_to 'Resetar Senha', admin_operators_reset_password_operator_path(user), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded text-nowrap' %>
             <button type="button" onclick="openModal(<%= user.id %>)" class="px-2 py-1 font-bold text-white bg-red-500 rounded hover:bg-red-600">Excluir</button>
           </td>
         </tr>
@@ -43,7 +43,7 @@
 <script>
   function openModal(userId) {
     document.getElementById('deleteModal').classList.remove('hidden');
-    document.getElementById('deleteButton').setAttribute('formaction', `/operators/${userId}`);
+    document.getElementById('deleteButton').setAttribute('formaction', `/admin/operators/${userId}`);
   }
 
   function closeModal() {

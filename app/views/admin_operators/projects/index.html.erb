@@ -22,7 +22,7 @@
           <td class="py-2 pr-4"><%= project.client.phone %></td>
           <td class="py-2 pr-4"><%= project.created_at.strftime('%d/%m/%Y - %H:%M') %></td>
           <td class="py-2 pr-4">
-            <%= link_to (project.phase.is_end ? 'Visualizar' : 'Editar'), edit_project_path(project), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded text-nowrap' %>
+            <%= link_to (project.phase.is_end ? 'Visualizar' : 'Editar'), edit_admin_operators_project_path(project), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded text-nowrap' %>
           </td>
         </tr>
       <% end %>

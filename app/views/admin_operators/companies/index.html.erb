@@ -5,11 +5,11 @@
 
   <div class="flex flex-wrap items-center justify-between w-full gap-2 mb-4">
     <div>
-      <%= link_to 'Novo Cliente', new_company_path, class: 'bg-customOrange hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mb-4 inline-block' %>
+      <%= link_to 'Novo Cliente', new_admin_operators_company_path, class: 'bg-customOrange hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mb-4 inline-block' %>
     </div>
     
     <div>
-      <%= form_with(url: companies_path(turbo_frame: "search_results"),
+      <%= form_with(url: admin_operators_companies_path(turbo_frame: "search_results"),
             method: "get",
             data: { "turbo-frame": "search_results",
                     controller: "search",
@@ -41,11 +41,11 @@
             <td class="py-2 pr-4"><%= company.cnpj %></td>
             <td class="py-2 pr-4"><%= company.phone %></td>
             <td class="flex flex-wrap gap-1 py-2 pr-4">
-              <%= link_to 'Editar', edit_company_path(company), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded text-nowrap', data: { turbo: false } %>
+              <%= link_to 'Editar', edit_admin_operators_company_path(company), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded text-nowrap', data: { turbo: false } %>
               <button type="button" onclick="openModal(<%= company.id %>)" class="px-2 py-1 font-bold text-white bg-red-500 rounded hover:bg-red-600">Excluir</button>
-              <%= link_to 'Criar Projeto', new_project_path(client_id: company.id), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded text-nowrap', data: { turbo: false } %>
+              <%= link_to 'Criar Projeto', new_admin_operators_project_path(client_id: company.id), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded text-nowrap', data: { turbo: false } %>
               <% if company.projects.present? %>
-                <%= link_to 'Visualizar Projetos', projects_path(client_id: company.id), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded text-nowrap', data: { turbo: false } %>
+                <%= link_to 'Visualizar Projetos', admin_operators_projects_path(client_id: company.id), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded text-nowrap', data: { turbo: false } %>
               <% end %>
             </td>
           </tr>
@@ -70,7 +70,7 @@
 <script>
   function openModal(companyId) {
     document.getElementById('deleteModal').classList.remove('hidden');
-    document.getElementById('deleteButton').setAttribute('formaction', `/companies/${companyId}`);
+    document.getElementById('deleteButton').setAttribute('formaction', `/admin_operators/companies/${companyId}`);
   }
 
   function closeModal() {
