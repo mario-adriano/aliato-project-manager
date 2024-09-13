@@ -3,10 +3,6 @@ namespace :admin do
 
   resources :operators, only: [ :index, :new, :create, :edit, :update, :destroy ]
 
-  resources :phases, only: [] do
-    resource :positions, only: [ :update ], module: :phases
-  end
-
   resources :phases do
     put :update_order_phases, on: :collection
   end

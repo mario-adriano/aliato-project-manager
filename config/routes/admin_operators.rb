@@ -6,11 +6,11 @@ namespace :admin_operators do
 
   resources :reset_password, only: [ :index, :update ]
 
-  resources :individuals
+  resources :individuals, except: [ :show ]
 
-  resources :companies
+  resources :companies, except: [ :show ]
 
-  resources :projects do
+  resources :projects, except: [ :destroy, :show ] do
     patch :update_phase
 
     resources :project_files, only: [] do
