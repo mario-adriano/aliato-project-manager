@@ -1,7 +1,6 @@
 module AdminOperators
   class ProjectsController < ApplicationController
     before_action :authenticate_user!
-    before_action :ensure_operator_authorization
     before_action :set_client, only: [ :new, :create ]
     before_action :set_project, only: [ :edit, :update ]
 

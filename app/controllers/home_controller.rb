@@ -3,6 +3,13 @@ class HomeController < ApplicationController
   before_action :redirect_to_reset_password
 
   def index
+    if current_user.admin?
+      redirect_to admin_root_path
+    elsif current_user.operator?
+      redirect_to admin_operators_root_path
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   private

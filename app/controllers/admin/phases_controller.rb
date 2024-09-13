@@ -1,7 +1,6 @@
 module Admin
   class PhasesController < ApplicationController
     before_action :set_phase, only: [ :show, :edit, :update, :destroy, :set_as_ending_phase ]
-    before_action :ensure_admin_authorization
 
     def index
       @phases = Phase.all.order("position ASC")

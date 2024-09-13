@@ -1,7 +1,6 @@
 module Admin
   class OperatorsController < ApplicationController
     before_action :authenticate_user!
-    before_action :ensure_admin_authorization
     before_action :set_user, only: [ :edit, :update, :reset_password, :update_password, :destroy ]
 
     def index

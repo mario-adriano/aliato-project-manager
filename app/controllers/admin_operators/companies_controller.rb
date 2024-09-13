@@ -1,7 +1,6 @@
 module AdminOperators
   class CompaniesController < ApplicationController
     before_action :authenticate_user!
-    before_action :ensure_operator_authorization
     before_action :set_company, only: [ :edit, :update, :destroy ]
 
     def index

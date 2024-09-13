@@ -1,7 +1,6 @@
 module AdminOperators
   class IndividualsController < ApplicationController
     before_action :authenticate_user!
-    before_action :ensure_operator_authorization
     before_action :set_individual, only: [ :edit, :update, :destroy ]
 
     def index
