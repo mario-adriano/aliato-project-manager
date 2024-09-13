@@ -287,6 +287,8 @@ GEM
       prism (~> 1.0)
       rbs (>= 3, < 4)
       sorbet-runtime (>= 0.5.10782)
+    ruby-lsp-rspec (0.1.12)
+      ruby-lsp (~> 0.17.0)
     ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
     selenium-webdriver (4.24.0)
@@ -365,6 +367,7 @@ DEPENDENCIES
   rails-i18n (~> 7.0)
   rubocop-rails-omakase
   ruby-lsp
+  ruby-lsp-rspec
   selenium-webdriver
   sprockets-rails
   sqlite3 (~> 1.4)
