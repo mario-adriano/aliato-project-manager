@@ -3,6 +3,8 @@ namespace :admin do
 
   resources :operators, only: [ :index, :new, :create, :edit, :update, :destroy ]
 
+  resources :reset_password, only: [ :index, :update ]
+
   resources :phases do
     put :update_order_phases, on: :collection
   end

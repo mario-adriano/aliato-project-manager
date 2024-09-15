@@ -1,4 +1,4 @@
-<div class="flex items-center justify-between p-4 bg-white shadow">
+<div class="flex items-center justify-between pt-[9px] pb-[9px] bg-white shadow">
   <div class="flex items-center">
     <% unless current_user.is_reset_password %>
         <button id="hamburger" class="z-10 lg:hidden" type="button" onClick="togleMenu()">
@@ -10,15 +10,29 @@
         </button>
       <% unless current_page?(root_url) %>
         
-        <a href="javascript:history.back()" id="back-button" class="hidden font-bold text-blue-500 hover:text-blue-700 lg:inline-block">← Voltar</a>
+        <a href="javascript:history.back()" id="back-button" class="hidden font-bold text-blue-500 hover:text-blue-700 lg:inline-block ml-2">← Voltar</a>
       <% else %>
         <span class="invisible inline-block font-bold text-blue-300">← Voltar</span>
       <% end %>
     <% end %>
   </div>
   <div class="flex items-center space-x-4">
-    <span class="font-medium text-gray-700">Usuário: <%= current_user.username %></span>
-    <%= link_to 'Logout', destroy_user_session_path, data: { "turbo-method": :delete }, class: 'text-red-500 hover:text-red-700' %>
+    <div class="relative inline-block text-left mr-2" data-controller="dropmenu">
+      <button data-action="click->dropmenu#toggle" id="dropMenuButton" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" type="button">
+        <i class="fa-regular fa-circle-user p-[3px] mr-1"></i>
+        <%= current_user.name.split.then { |n| n.size > 1 ? "#{n.first} #{n.last}" : n.first } %>
+        <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </button>
+
+      <div data-target="dropmenu.menu" id="dropMenu" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden z-10" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+        <div class="py-1" role="none">
+          <%= link_to 'Resetar senha', current_user.admin? ? admin_reset_password_index_path : admin_operators_reset_password_index_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
+          <%= link_to 'Logout', destroy_user_session_path, data: { "turbo-method": :delete }, class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -27,4 +41,25 @@
     const menu = document.getElementById('menu');
     menu.classList.toggle('hidden');
   }
+
+  // document.addEventListener('turbo:load', () => {
+  //   // Adiciona um timeout para garantir que o DOM esteja totalmente renderizado
+  //   setTimeout(() => {
+  //     const dropdownButton = document.getElementById('dropdownButton');
+  //     const dropdownMenu = document.getElementById('dropdownMenu');
+
+  //     if (dropdownButton) {
+  //       dropdownButton.addEventListener('click', () => {
+  //         dropdownMenu.classList.toggle('hidden');
+  //       });
+  //     }
+
+  //     window.addEventListener('click', (e) => {
+  //       if (dropdownButton && !dropdownButton.contains(e.target)) {
+  //         dropdownMenu.classList.add('hidden');
+  //       }
+  //     });
+  //   }, 0); // O timeout ajuda a garantir que o DOM seja completamente renderizado antes da execução
+  // });
+
 </script>

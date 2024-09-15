@@ -1,0 +1,31 @@
+{
+    // Versão do Font Awesome a ser usada (5, 6, etc.).
+    "fontAwesomeAutocomplete.version": "6",
+    
+    // Padrão de arquivos globais onde o autocompletar do Font Awesome estará ativo.
+    "fontAwesomeAutocomplete.patterns": [
+        "**/*.erb",
+        "**/*.html",
+        "**/*.js",
+        "**/*.css"
+    ],
+    
+    // Palavra que dispara o autocompletar de ícones do Font Awesome.
+    "fontAwesomeAutocomplete.triggerWord": "fa-",
+    
+    // Evita a remoção automática da palavra de gatilho para arquivos .erb.
+    "fontAwesomeAutocomplete.disableTriggerWordAutoClearPatterns": [
+        "**/*.erb"
+    ],
+    
+    // Cor de fundo da pré-visualização do ícone Font Awesome.
+    "fontAwesomeAutocomplete.preview.backgroundColor": "#ffffff",
+    
+    // Cor de primeiro plano da pré-visualização do ícone Font Awesome.
+    "fontAwesomeAutocomplete.preview.foregroundColor": "#000000",
+    
+    // Modelo de inserção para arquivos .erb.
+    "fontAwesomeAutocomplete.insertionTemplate": {
+        "**/*.erb": "{style} {prefix}{name}"
+    }
+}

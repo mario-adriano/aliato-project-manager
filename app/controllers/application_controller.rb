@@ -20,6 +20,6 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_to_reset_password
-    redirect_to reset_password_index_path if current_user.requires_reset_password?
+    redirect_to admin_operators_reset_password_index_path if current_user.requires_reset_password?
   end
 end

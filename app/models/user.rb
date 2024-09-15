@@ -70,10 +70,12 @@ class User < ApplicationRecord
   private
 
   def set_role
-    if User.count == 0
-      self.type = "Administrator"
-    else
-      self.type = "Operator"
+    if self.type.blank?
+      if User.count == 0
+        self.type = "Administrator"
+      else
+        self.type = "Operator"
+      end
     end
   end
 

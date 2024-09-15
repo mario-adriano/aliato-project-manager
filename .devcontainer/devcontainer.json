@@ -15,7 +15,9 @@
         "hridoy.rails-snippets",
         "mhutchie.git-graph",
         "donjayamanne.githistory",
-        "donjayamanne.git-extension-pack"
+        "donjayamanne.git-extension-pack",
+        "marcoroth.stimulus-lsp",
+        "janne252.fontawesome-autocomplete"
       ]
     }
   },

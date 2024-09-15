@@ -7,6 +7,7 @@ gem "acts_as_list", "~> 1.1" # Add capabilities for sorting and reordering a num
 gem "bootsnap", require: false # Reduces boot times through caching; required in config/boot.rb
 gem "cpf_cnpj", "~> 0.5.0" # Validate CPF and CNPJ numbers
 gem "devise", "~> 4.9" # Flexible authentication solution for Rails with Warden
+gem "font-awesome-sass", "~> 6.5.2" # font-awesome-sass' is a Sass-powered version of Font Awesome
 gem "foreman", "~> 0.88.1"  # Manage Procfile-based applications
 # gem "image_processing", "~> 1.2" # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "importmap-rails" # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
