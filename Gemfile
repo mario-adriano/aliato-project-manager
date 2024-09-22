@@ -38,10 +38,12 @@ group :development do
   # gem "debugbar", "0.3.0" # Debugging toolbar for Rails applications
   gem "dotenv-rails", "~> 3.1.2" # Autoload dotenv in Rails.
   gem "dockerfile-rails", ">= 1.6" # Use Dockerfile templates for Rails development
+  gem "faker", "~> 3.4.2" # Faker is a port of Perl's Data::Faker library. It's a library for generating fake data such as names, addresses, and phone numbers.
   gem "lol_dba", "~> 2.4.0" # lol_dba is a small package of rake tasks that scan your application models and displays a list of columns that probably should be indexed
   gem "pghero", "~> 3.6.0" # A performance dashboard for Postgres
   gem "pg_query", "~> 5.1.0" # Parse and analyze SQL queries in Ruby
   gem "rack-mini-profiler" # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
+  gem "rspec-rails", "~> 7.0.1" # rspec-rails brings the RSpec testing framework to Ruby on Rails as a drop-in alternative to its default testing framework, Minitest.
   gem "ruby-lsp", require: false # Language Server Protocol for Ruby
   gem "ruby-lsp-rspec", require: false # Ruby LSP RSpec is a Ruby LSP addon for displaying CodeLens for RSpec tests.
   # gem "spring" # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
@@ -52,4 +54,5 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem "shoulda-matchers", "~> 6.4.0" # Shoulda Matchers provides RSpec- and Minitest-compatible one-liners
 end

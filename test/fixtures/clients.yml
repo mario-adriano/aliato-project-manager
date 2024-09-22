@@ -25,32 +25,32 @@
 #  index_clients_on_deleted_at  (deleted_at)
 #
 
-one:
-  type: 
-  name: MyString
-  email: MyString
-  phone: MyString
-  address: MyString
-  neighborhood: MyString
-  city: MyString
-  state: MyString
-  zip_code: MyString
-  complement: MyString
-  document_number: MyString
-  rg: MyString
-  company_name: MyString
+# one:
+#   type: 
+#   name: MyString
+#   email: MyString
+#   phone: MyString
+#   address: MyString
+#   neighborhood: MyString
+#   city: MyString
+#   state: MyString
+#   zip_code: MyString
+#   complement: MyString
+#   document_number: MyString
+#   rg: MyString
+#   company_name: MyString
 
-two:
-  type: 
-  name: MyString
-  email: MyString
-  phone: MyString
-  address: MyString
-  neighborhood: MyString
-  city: MyString
-  state: MyString
-  zip_code: MyString
-  complement: MyString
-  document_number: MyString
-  rg: MyString
-  company_name: MyString
+# two:
+#   type: 
+#   name: MyString
+#   email: MyString
+#   phone: MyString
+#   address: MyString
+#   neighborhood: MyString
+#   city: MyString
+#   state: MyString
+#   zip_code: MyString
+#   complement: MyString
+#   document_number: MyString
+#   rg: MyString
+#   company_name: MyString

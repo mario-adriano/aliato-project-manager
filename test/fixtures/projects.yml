@@ -25,14 +25,14 @@
 #  fk_rails_...  (user_id => users.id)
 #
 
-one:
-  user: one
-  phase: one
-  description: MyText
-  code: MyString
+# one:
+#   user: one
+#   phase: one
+#   description: MyText
+#   code: MyString
 
-two:
-  user: two
-  phase: two
-  description: MyText
-  code: MyString
+# two:
+#   user: two
+#   phase: two
+#   description: MyText
+#   code: MyString

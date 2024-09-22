@@ -19,14 +19,14 @@
 #  fk_rails_...  (project_id => projects.id)
 #
 
-one:
-  project: one
-  file_data: 
-  file_name: MyString
-  price: 9.99
+# one:
+#   project: one
+#   file_data: 
+#   file_name: MyString
+#   price: 9.99
 
-two:
-  project: two
-  file_data: 
-  file_name: MyString
-  price: 9.99
+# two:
+#   project: two
+#   file_data: 
+#   file_name: MyString
+#   price: 9.99
