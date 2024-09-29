@@ -28,6 +28,7 @@ class Project < ApplicationRecord
   belongs_to :user
   belongs_to :phase
   belongs_to :client
+  belongs_to :phase, counter_cache: true
 
   has_many :project_files, dependent: :destroy
 end

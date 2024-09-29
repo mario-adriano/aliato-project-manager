@@ -17,7 +17,9 @@
         "donjayamanne.githistory",
         "donjayamanne.git-extension-pack",
         "marcoroth.stimulus-lsp",
-        "janne252.fontawesome-autocomplete"
+        "janne252.fontawesome-autocomplete",
+        "ms-azuretools.vscode-docker",
+        "bradlc.vscode-tailwindcss"
       ]
     }
   },

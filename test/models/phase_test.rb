@@ -2,14 +2,15 @@
 #
 # Table name: phases
 #
-#  id          :bigint           not null, primary key
-#  deleted_at  :datetime
-#  description :text
-#  is_end      :boolean
-#  name        :string
-#  position    :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id             :bigint           not null, primary key
+#  deleted_at     :datetime
+#  description    :text
+#  is_end         :boolean
+#  name           :string
+#  position       :integer
+#  projects_count :integer          default(0), not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #
 # Indexes
 #

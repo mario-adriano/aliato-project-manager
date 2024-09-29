@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_16_114410) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_29_201223) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
 
   create_table "clients", force: :cascade do |t|
@@ -42,6 +43,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_16_114410) do
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
     t.integer "position"
+    t.integer "projects_count", default: 0, null: false
     t.index ["deleted_at"], name: "index_phases_on_deleted_at"
     t.index ["position"], name: "index_phases_on_position"
   end

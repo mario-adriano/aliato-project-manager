@@ -38,6 +38,7 @@ group :development do
   # gem "debugbar", "0.3.0" # Debugging toolbar for Rails applications
   gem "dotenv-rails", "~> 3.1.2" # Autoload dotenv in Rails.
   gem "dockerfile-rails", ">= 1.6" # Use Dockerfile templates for Rails development
+  gem "factory_bot_rails", "~> 6.4.3" # Factory_bot is a fixtures replacement with a straightforward definition syntax
   gem "faker", "~> 3.4.2" # Faker is a port of Perl's Data::Faker library. It's a library for generating fake data such as names, addresses, and phone numbers.
   gem "lol_dba", "~> 2.4.0" # lol_dba is a small package of rake tasks that scan your application models and displays a list of columns that probably should be indexed
   gem "pghero", "~> 3.6.0" # A performance dashboard for Postgres

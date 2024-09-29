@@ -2,14 +2,15 @@
 #
 # Table name: phases
 #
-#  id          :bigint           not null, primary key
-#  deleted_at  :datetime
-#  description :text
-#  is_end      :boolean
-#  name        :string
-#  position    :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id             :bigint           not null, primary key
+#  deleted_at     :datetime
+#  description    :text
+#  is_end         :boolean
+#  name           :string
+#  position       :integer
+#  projects_count :integer          default(0), not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #
 # Indexes
 #
@@ -20,13 +21,15 @@ class Phase < ApplicationRecord
   acts_as_paranoid
   acts_as_list top_of_list: 0
 
+  has_many :projects, dependent: :restrict_with_error
+
   before_validation :first_phase
 
   before_create :set_position
-  before_save -> { self.name.downcase! }
+  before_save -> { self.name.downcase! if name.present? }
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
-  validates :position, uniqueness: { scope: :deleted_at, message: "a ordem deve ser única" }, if: -> { position.nil? }
+  # validates :position, uniqueness: { scope: :deleted_at, message: "a ordem deve ser única" }, if: -> { position.nil? }
 
   def destroy
     unless self.position == 1
@@ -57,11 +60,11 @@ class Phase < ApplicationRecord
   # Returns:
   # - The previous phase if found, or nil if no previous phase exists.
   def prev_phase
-    Phase.where("position < ?", position).where(is_end: [false, nil]).order('position DESC').first
+    Phase.where("position < ?", position).where(is_end: [ false, nil ]).order("position DESC").first
   end
 
   def next_phase
-    Phase.where("position > ?", position).where(is_end: [false, nil]).first
+    Phase.where("position > ?", position).where(is_end: [ false, nil ]).first
   end
 
   private
@@ -74,7 +77,7 @@ class Phase < ApplicationRecord
 
   def set_position
     unless Phase.count == 0
-      self.position = Phase.all.order('position ASC').last.position + 1
+      self.position = Phase.all.order("position ASC").last.position + 1
     end
   end
 end
