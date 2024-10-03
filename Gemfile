@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.2.2"
+ruby "3.3.5"
 
 gem "acts_as_list", "~> 1.1" # Add capabilities for sorting and reordering a number of objects in a list
 # gem "bcrypt", "~> 3.1.7" # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
@@ -26,6 +26,7 @@ gem "stimulus-rails" # Hotwire's modest JavaScript framework [https://stimulus.h
 gem "tailwindcss-rails", "~> 2.6" # Use Tailwind CSS with Rails
 gem "turbo-rails" # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "tzinfo-data", platforms: %i[ windows jruby ] # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem "rbs", "~> 3.5.3", require: false # RBS is a language for describing the structure of Ruby programs
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ] # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -45,7 +46,7 @@ group :development do
   gem "pg_query", "~> 5.1.0" # Parse and analyze SQL queries in Ruby
   gem "rack-mini-profiler" # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   gem "rspec-rails", "~> 7.0.1" # rspec-rails brings the RSpec testing framework to Ruby on Rails as a drop-in alternative to its default testing framework, Minitest.
-  gem "ruby-lsp", require: false # Language Server Protocol for Ruby
+  gem "ruby-lsp", ">= 0.17.18", require: false # Language Server Protocol for Ruby
   gem "ruby-lsp-rspec", require: false # Ruby LSP RSpec is a Ruby LSP addon for displaying CodeLens for RSpec tests.
   # gem "spring" # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   gem "web-console" # Use console on exceptions pages [https://github.com/rails/web-console]
