@@ -55,6 +55,7 @@ module Admin
         @phase.update(is_end: false) if params[:position].to_i == 0
       end
 
+      broadcast_phase_order_change(Phase.all.order("position ASC"))
       head :no_content
     end
 
@@ -69,6 +70,7 @@ module Admin
             render turbo_stream: turbo_stream.replace("is_end_#{@phase.id}", partial: "end_of_phase", locals: { phase: @phase })
           end
         end
+        broadcast_phase_change(@phase)
       end
     end
 
@@ -106,6 +108,21 @@ module Admin
 
     def phase_params
       params.require(:phase).permit(:name, :description)
+    end
+
+    def broadcast_phase_change(phase)
+      ActionCable.server.broadcast("admin_phases_channel", {
+        type: "set_as_ending",
+        phase_id: phase.id,
+        html: render_to_string(partial: "end_of_phase", locals: { phase: phase })
+      })
+    end
+
+    def broadcast_phase_order_change(phases)
+      ActionCable.server.broadcast("admin_phases_channel", {
+        type: "update_order",
+        html: render_to_string(partial: "phases", locals: { phases: phases })
+      })
     end
   end
 end

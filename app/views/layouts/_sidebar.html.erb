@@ -28,12 +28,12 @@
         <li class="mb-1 pl-4 py-2 <%= 'bg-gray-700' if controller.controller_name == 'projects' && params[:phase_id].nil? %>">
            <i class="fa-solid fa-sheet-plastic text-gray-300 pr-4"></i><%= link_to 'Visualizar Projetos', admin_operators_projects_path, class: "text-gray-300 text-nowrap hover:text-gray-200" %>
         </li>
-        <% Phase.where(is_end: [false, nil]).order('position ASC').each do |phase| %>
+        <% Phase.where(is_end: [false, nil]).select(:id, :name, :projects_count).order('position ASC').each do |phase| %>
           <li class="mb-1 pl-4 py-2 <%= 'bg-gray-700' if controller.controller_name == 'projects' && params[:phase_id].to_i == phase.id %>">
             <%= link_to "• #{phase.name.capitalize} (#{phase.projects_count})", admin_operators_projects_path(phase_id: phase.id), class: "text-gray-300 text-nowrap hover:text-gray-200" %>
           </li>
         <% end %>
-        <% Phase.where(is_end: true).order('position ASC').each do |phase| %>
+        <% Phase.where(is_end: true).select(:id, :name).order('position ASC').each do |phase| %>
           <li class="mb-4 pl-4 py-2 <%= 'bg-gray-700' if controller.controller_name == 'projects' && params[:phase_id].to_i == phase.id %>">
             <%= link_to "• #{phase.name.capitalize}", admin_operators_projects_path(phase_id: phase.id), class: "text-gray-300 text-nowrap hover:text-gray-200" %>
           </li>
