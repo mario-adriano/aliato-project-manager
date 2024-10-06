@@ -36,8 +36,6 @@ class Phase < ApplicationRecord
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   # validates :position, uniqueness: { scope: :deleted_at, message: "a ordem deve ser única" }, if: -> { position.nil? }
 
-  # enum color: { blue: "#3b82f6", red: "#ef4444", green: "#10b981", yellow: "#f59e0b" }
-
   def destroy
     unless self.position == 1
       super
