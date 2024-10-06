@@ -16,7 +16,11 @@
             <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/>
           </svg>
         </td>
-        <td class="py-2 pr-4"><%= phase.name_capitalize %></td>
+        <td class="py-2 pr-4">
+          <label class="p-1 rounded font-bold" style="background-color: <%= phase.color %>; color: <%= phase.text_color %>;">
+            <%= phase.name_capitalize %>
+          </label>
+        </td>
         <td class="py-2 pr-4"><%= phase.description %></td>
         <td class="py-2 pr-4">
 

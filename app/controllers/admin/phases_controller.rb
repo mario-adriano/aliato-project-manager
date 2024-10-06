@@ -107,7 +107,7 @@ module Admin
     end
 
     def phase_params
-      params.require(:phase).permit(:name, :description)
+      params.require(:phase).permit(:name, :description, :color)
     end
 
     def broadcast_phase_change(phase)

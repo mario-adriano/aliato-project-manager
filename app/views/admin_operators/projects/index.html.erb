@@ -18,7 +18,11 @@
         <tr class="border-b border-gray-200">
           <td class="py-2 pr-4"><%= project.client.name %><%= " - #{project.client.company_name}" if project.client.type == 'Company' %></td>
           <td class="py-2 pr-4"><%= project.client.document_number %></td>
-          <td class="py-2 pr-4"><%= project.phase.name.capitalize %></td>
+          <td class="py-2 pr-4">
+            <label class="p-1 rounded font-bold" style="background-color: <%= project.phase.color %>; color: <%= project.phase.text_color %>;">
+              <%= project.phase.name.capitalize %>
+            </label>
+          </td>
           <td class="py-2 pr-4"><%= project.client.phone %></td>
           <td class="py-2 pr-4"><%= project.created_at.strftime('%d/%m/%Y - %H:%M') %></td>
           <td class="py-2 pr-4">

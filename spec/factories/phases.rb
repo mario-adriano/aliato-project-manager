@@ -3,12 +3,14 @@
 # Table name: phases
 #
 #  id             :bigint           not null, primary key
+#  color          :string
 #  deleted_at     :datetime
 #  description    :text
 #  is_end         :boolean
 #  name           :string
 #  position       :integer
 #  projects_count :integer          default(0), not null
+#  text_color     :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #

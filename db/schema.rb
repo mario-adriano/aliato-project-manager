@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_29_201223) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_05_200653) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -44,6 +44,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_29_201223) do
     t.datetime "deleted_at"
     t.integer "position"
     t.integer "projects_count", default: 0, null: false
+    t.string "color"
+    t.string "text_color"
     t.index ["deleted_at"], name: "index_phases_on_deleted_at"
     t.index ["position"], name: "index_phases_on_position"
   end

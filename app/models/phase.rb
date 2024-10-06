@@ -3,12 +3,14 @@
 # Table name: phases
 #
 #  id             :bigint           not null, primary key
+#  color          :string
 #  deleted_at     :datetime
 #  description    :text
 #  is_end         :boolean
 #  name           :string
 #  position       :integer
 #  projects_count :integer          default(0), not null
+#  text_color     :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
@@ -25,11 +27,16 @@ class Phase < ApplicationRecord
 
   before_validation :first_phase
 
+  after_initialize :set_default_values
+
   before_create :set_position
+  before_save :adjust_text_color
   before_save -> { self.name.downcase! if name.present? }
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   # validates :position, uniqueness: { scope: :deleted_at, message: "a ordem deve ser única" }, if: -> { position.nil? }
+
+  # enum color: { blue: "#3b82f6", red: "#ef4444", green: "#10b981", yellow: "#f59e0b" }
 
   def destroy
     unless self.position == 1
@@ -79,5 +86,20 @@ class Phase < ApplicationRecord
     unless Phase.count == 0
       self.position = Phase.all.order("position ASC").last.position + 1
     end
+  end
+
+  def adjust_text_color
+    self.text_color = light_background? ? "black" : "white"
+  end
+
+  def light_background?
+    r, g, b = color.delete("#").scan(/../).map(&:hex)
+    brightness = (r * 299 + g * 587 + b * 114) / 1000
+    brightness > 150
+  end
+
+  def set_default_values
+    self.color ||= "#ffffff"
+    self.text_color ||= "black"
   end
 end
