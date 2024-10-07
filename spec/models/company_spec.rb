@@ -45,6 +45,18 @@ RSpec.describe Company, type: :model do
     end
   end
 
+  describe "alias_method and alias_attribute" do
+    it "returns the cnpj using alias_attribute" do
+      company = Company.new(document_number: "90.958.836/0001-96")
+      expect(company.cnpj).to eq("90958836000196")
+    end
+
+    it "returns the formatted CNPJ using alias_method" do
+      company = Company.new(document_number: "90958836000196")
+      expect(company.cnpj_formatted).to eq("90.958.836/0001-96")
+    end
+  end
+
   describe "database columns" do
     it { is_expected.to have_db_column(:id).of_type(:integer).with_options(null: false) }
     it { is_expected.to have_db_column(:address).of_type(:string) }

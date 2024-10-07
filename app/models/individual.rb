@@ -27,6 +27,8 @@
 class Individual < Client
   alias_attribute :cpf, :document_number
 
+  alias_method :cpf_formatted, :document_number_formatted
+
   validate :valid_cpf
 
   private

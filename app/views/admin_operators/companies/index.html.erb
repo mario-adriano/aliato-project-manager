@@ -38,7 +38,7 @@
           <tr class="border-b border-gray-200">
             <td class="py-2 pr-4"><%= company.name %></td>
             <td class="py-2 pr-4"><%= company.company_name %></td>
-            <td class="py-2 pr-4"><%= company.cnpj %></td>
+            <td class="py-2 pr-4"><%= company.cnpj_formatted %></td>
             <td class="py-2 pr-4"><%= company.phone %></td>
             <td class="flex flex-wrap gap-1 py-2 pr-4">
               <%= link_to 'Editar', edit_admin_operators_company_path(company), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded text-nowrap', data: { turbo: false } %>

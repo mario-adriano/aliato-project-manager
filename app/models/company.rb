@@ -27,6 +27,8 @@
 class Company < Client
   alias_attribute :cnpj, :document_number
 
+  alias_method :cnpj_formatted, :document_number_formatted
+
   validate :valid_cnpj
 
   private

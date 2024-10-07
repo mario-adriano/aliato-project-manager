@@ -46,6 +46,18 @@ RSpec.describe Individual, type: :model do
     end
   end
 
+  describe "alias_method and alias_attribute" do
+    it "returns the CPF using alias_attribute" do
+      individual = Individual.new(document_number: "493.298.323-93")
+      expect(individual.document_number).to eq("49329832393")
+    end
+
+    it "returns the formatted CPF using alias_method" do
+      individual = Individual.new(document_number: "49329832393")
+      expect(individual.cpf_formatted).to eq("493.298.323-93")
+    end
+  end
+
   describe "database columns" do
     it { is_expected.to have_db_column(:id).of_type(:integer).with_options(null: false) }
     it { is_expected.to have_db_column(:address).of_type(:string) }
