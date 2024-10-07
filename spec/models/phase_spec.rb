@@ -50,13 +50,17 @@ RSpec.describe Phase, type: :model do
   end
 
   describe "callbacks" do
-    it "sets default color to #ffffff on initialization" do
-      phase = Phase.new
+    it "sets default color to #ffffff before save" do
+      create(:phase, position: 1)
+      phase = build(:phase)
+      phase.save
       expect(phase.color).to eq("#ffffff")
     end
 
-    it "sets default text_color to black on initialization" do
-      phase = Phase.new
+    it "sets default text_color to black before save" do
+      create(:phase, position: 1)
+      phase = build(:phase)
+      phase.save
       expect(phase.text_color).to eq("black")
     end
 

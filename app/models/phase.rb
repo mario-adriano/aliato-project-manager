@@ -27,14 +27,12 @@ class Phase < ApplicationRecord
 
   before_validation :first_phase
 
-  after_initialize :set_default_values
-
   before_create :set_position
   before_save :adjust_text_color
   before_save -> { self.name.downcase! if name.present? }
+  before_save :set_default_values
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
-  # validates :position, uniqueness: { scope: :deleted_at, message: "a ordem deve ser única" }, if: -> { position.nil? }
 
   def destroy
     unless self.position == 1
@@ -91,6 +89,7 @@ class Phase < ApplicationRecord
   end
 
   def light_background?
+    return true if color.blank?
     r, g, b = color.delete("#").scan(/../).map(&:hex)
     brightness = (r * 299 + g * 587 + b * 114) / 1000
     brightness > 150

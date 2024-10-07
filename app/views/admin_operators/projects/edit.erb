@@ -3,7 +3,7 @@
 
   <%= turbo_frame_tag "phase_dropdown" do %>
     <div id="phase-dropdown" class="relative" data-controller="dropdown">
-      <button data-action="dropdown#toggle" class="bg-blue-500 text-white font-semibold py-2 px-4 rounded inline-flex items-center">
+      <button data-action="dropdown#toggle" class="font-semibold py-2 px-4 rounded inline-flex items-center" style="background-color: <%= @project.phase.color %>; color: <%= @project.phase.text_color %>;">
         <span><%= @project.phase.name.capitalize %></span>
         <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
