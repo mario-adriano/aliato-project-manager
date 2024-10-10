@@ -12,13 +12,13 @@ gem "foreman", "~> 0.88.1"  # Manage Procfile-based applications
 # gem "image_processing", "~> 1.2" # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "importmap-rails" # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "jbuilder" # Build JSON APIs with ease [https://github.com/rails/jbuilder]
-# gem "kredis" # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
+gem "kredis" # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 gem "paranoia", "~> 2.6" # Soft delete for ActiveRecord
 gem "pg", "~> 1.5" # Use PostgreSQL as the database for Active Record
 gem "puma", ">= 5.0" # Use the Puma web server [https://github.com/puma/puma]
 gem "rails", "~> 7.1.3", ">= 7.1.3.2" # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails-i18n", "~> 7.0"  # Ruby on Rails I18n support
-# gem "redis", ">= 4.0.1" # Use Redis adapter to run Action Cable in production
+gem "redis", ">= 4.0.1" # Use Redis adapter to run Action Cable in production
 gem "rubocop-rails-omakase", require: false # A curated RuboCop configuration for Rails projects following community best practices.
 gem "sprockets-rails" # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sqlite3", "~> 1.4" # Use sqlite3 as the database for Active Record

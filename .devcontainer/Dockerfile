@@ -13,3 +13,8 @@ RUN apt-get update && \
     libffi-dev \
     libreadline-dev \
     && rm -rf /var/lib/apt/lists/*
+
+# Install je_malloc for better memory management
+# RUN apt-get update && apt-get install --no-install-recommends -y libjemalloc2 && rm -rf /var/lib/apt/lists/*
+# ENV LD_PRELOAD="libjemalloc.so.2" \
+#     MALLOC_CONF="dirty_decay_ms:1000,narenas:2,background_thread:true,stats_print:false"

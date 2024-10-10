@@ -55,22 +55,23 @@ module Admin
         @phase.update(is_end: false) if params[:position].to_i == 0
       end
 
-      broadcast_phase_order_change(Phase.all.order("position ASC"))
+      @phase.broadcast_replace_to "phases_index", target: "phases_table", partial: "admin/phases/phases", locals: { phases: Phase.all.order("position ASC") }
+
       head :no_content
+    rescue => e
+      Rails.logger.error "Erro ao atualizar a fase: #{e.message}"
+      head :internal_server_error
     end
 
     def set_as_ending_phase
       if @phase.position == 1
-        redirect_to admin_phases_path, flash: { danger: "Fase de in\u00EDcio n\u00E3o pode ser fim." }
+        redirect_to admin_phases_path, flash: { danger: "Fase de início não pode ser fim." }
       else
         @phase.update(is_end: !@phase.is_end)
 
-        respond_to do |format|
-          format.turbo_stream do
-            render turbo_stream: turbo_stream.replace("is_end_#{@phase.id}", partial: "end_of_phase", locals: { phase: @phase })
-          end
-        end
-        broadcast_phase_change(@phase)
+        @phase.broadcast_replace_to "phases_index", target: "is_end_#{@phase.id}", partial: "admin/phases/end_of_phase", locals: { phase: @phase }
+
+        head :no_content
       end
     end
 

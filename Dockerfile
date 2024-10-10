@@ -1,7 +1,7 @@
 # syntax = docker/dockerfile:1
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
-ARG RUBY_VERSION=3.2.2
+ARG RUBY_VERSION=3.3.5
 FROM ruby:$RUBY_VERSION-slim as base
 
 LABEL fly_launch_runtime="rails"
@@ -56,6 +56,11 @@ RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
 # Final stage for app image
 FROM base
+
+# Install jemalloc for better memory management
+RUN apt-get update && apt-get install --no-install-recommends -y libjemalloc2 && rm -rf /var/lib/apt/lists/*
+ENV LD_PRELOAD="libjemalloc.so.2" \
+    MALLOC_CONF="dirty_decay_ms:1000,narenas:2,background_thread:true,stats_print:false"
 
 # Install packages needed for deployment
 RUN apt-get update -qq && \

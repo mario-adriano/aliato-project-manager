@@ -1,3 +1,5 @@
+<%= turbo_stream_from "phases_index" %>
+
 <div class="px-8 py-4 mx-auto">
   <%= render 'layouts/flash' %>
 
@@ -29,29 +31,5 @@
   function closeModal() {
     document.getElementById('deleteModal').classList.add('hidden');
   }
-
-  document.getElementById('saveOrderButton').addEventListener('click', function(e) {
-    e.preventDefault();
-
-    var formData = new FormData();
-    formData.append('_method', 'PATCH');
-
-    var inputs = document.querySelectorAll('input[type="number"]');
-    inputs.forEach(function(input) {
-        formData.append(input.name, input.value);
-    });
-
-    fetch('<%= update_order_phases_admin_phases_path %>', {
-        method: 'PUT',
-        body: formData,
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        }
-    })
-    .then(function(responseData) {
-        window.location.reload();
-    })
-  });
 
 </script>
