@@ -25,3 +25,4 @@ production:
   url: <%= ENV["DATABASE_URL"] %>
   pool: <%= ENV["DB_POOL"] || 5 %>
   sslmode: require
+  statement_limit: 200
