@@ -85,4 +85,5 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 80
-CMD ["./bin/thrust", "./bin/rails", "server", "-p" "80", "-b", "0.0.0.0"]
+# CMD ["./bin/thrust", "./bin/rails", "server", "-p" "80", "-b", "0.0.0.0"]
+CMD ["./bin/thrust", "./bin/rails", "server"]
