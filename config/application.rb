@@ -1,5 +1,4 @@
 require_relative "boot"
-require_relative '../lib/exceptions'
 
 require "rails/all"
 
