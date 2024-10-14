@@ -24,6 +24,7 @@ gem "sprockets-rails" # The original asset pipeline for Rails [https://github.co
 gem "sqlite3", "~> 1.4" # Use sqlite3 as the database for Active Record
 gem "stimulus-rails" # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "tailwindcss-rails", "~> 2.6" # Use Tailwind CSS with Rails
+gem "thruster", require: false # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
 gem "turbo-rails" # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "tzinfo-data", platforms: %i[ windows jruby ] # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "rbs", "~> 3.5.3", require: false # RBS is a language for describing the structure of Ruby programs
