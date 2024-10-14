@@ -77,6 +77,8 @@ RUN groupadd --system --gid 1000 rails && \
     chown -R 1000:1000 db log storage tmp
 USER 1000:1000
 
+RUN chmod +x ./bin/thrust ./bin/rails ./bin/docker-entrypoint
+
 # Entrypoint sets up the container.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
