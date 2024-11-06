@@ -26,7 +26,7 @@
         </svg>
       </button>
 
-      <div data-target="dropmenu.menu" id="dropMenu" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden z-10" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+      <div data-dropmenu-target="menu" id="dropMenu" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden z-10" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
         <div class="py-1" role="none">
           <%= link_to 'Resetar senha', current_user.admin? ? admin_reset_password_index_path : admin_operators_reset_password_index_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
           <%= link_to 'Logout', destroy_user_session_path, data: { "turbo-method": :delete }, class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' %>

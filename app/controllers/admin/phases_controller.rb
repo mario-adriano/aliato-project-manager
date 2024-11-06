@@ -14,6 +14,11 @@ module Admin
     end
 
     def edit
+      @phase = Phase.find(params[:id])
+      respond_to do |format|
+        format.turbo_stream  { render :edit, layout: false }
+        format.html
+      end
     end
 
     def create
@@ -34,7 +39,20 @@ module Admin
 
     def update
       if @phase.update(phase_params)
-        redirect_to admin_phases_path, flash: { success: "Fase do projeto atualizado com sucesso." }
+        respond_to do |format|
+          if request.headers["Turbo-Frame"].present?
+            format.turbo_stream do
+              render turbo_stream: [
+                turbo_stream.replace("phase_#{@phase.id}", partial: "admin/phases/phase_row", locals: { phase: @phase }),
+                turbo_stream.update("modal", ""),
+                turbo_stream.replace("flash_messages", partial: "layouts/flash", locals: { flash: { success: "Fase do projeto atualizado com sucesso." } }),
+                turbo_stream.append("turbo-frame-end", partial: "layouts/update_url", locals: { url: admin_phases_path })
+              ]
+            end
+          else
+            format.html { redirect_to admin_phases_path, flash: { success: "Fase do projeto atualizado com sucesso." } }
+          end
+        end
       else
         respond_to do |format|
           format.turbo_stream do

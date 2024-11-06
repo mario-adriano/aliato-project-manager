@@ -48,7 +48,8 @@ group :development do
   gem "pg_query", "~> 5.1.0" # Parse and analyze SQL queries in Ruby
   gem "rack-mini-profiler" # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   gem "rspec-rails", "~> 7.0.1" # rspec-rails brings the RSpec testing framework to Ruby on Rails as a drop-in alternative to its default testing framework, Minitest.
-  gem "ruby-lsp", ">= 0.17.18", require: false # Language Server Protocol for Ruby
+  gem "ruby-lsp", ">= 0.20.0", require: false # Language Server Protocol for Ruby
+  gem "ruby-lsp-rails", ">= 0.3.21", require: false # Ruby LSP Rails is a Ruby LSP addon for Rails projects.
   gem "ruby-lsp-rspec", require: false # Ruby LSP RSpec is a Ruby LSP addon for displaying CodeLens for RSpec tests.
   # gem "spring" # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   gem "web-console" # Use console on exceptions pages [https://github.com/rails/web-console]

@@ -1,29 +1,21 @@
-<div class="px-8 py-4 mx-auto">
-  <h1 class="text-2xl font-bold mb-4">Editar Fase</h1>
-
-  <%= form_for @phase, url: admin_phase_path(@phase), method: :patch do |f| %>
-    <turbo-frame id="errors">
-      <%= render 'layouts/errors', resource: @phase %>
-    </turbo-frame>
-
-    <div class="mb-4">
-      <%= f.label :name, 'Nome da fase*', class: 'block text-gray-700 font-medium mb-2' %>
-      <%= f.text_field :name, class: 'w-custom-752 max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
-    </div>
-
-    <div class="mb-4">
-      <%= f.label :description, 'Descrição', class: 'block text-gray-700 font-medium mb-2' %>
-      <%= f.text_field :description, class: 'w-custom-752 max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
-    </div>
-
-    <div class="mb-4">
-      <%= f.label :color, "Escolha uma cor:" %>
-      <%= f.color_field :color, class: "form-control", value: f.object.color || "#000000" %>
-    </div>
-
-    <div class="flex items-center space-x-4">
-      <%= f.submit 'Atualizar', class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded' %>
-      <button type="reset" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Resetar</button>
+<% if request.headers['Turbo-Frame'] == 'modal' %>
+  <%= turbo_frame_tag "modal", data: { modals_target: "modal" } do %>
+    <div data-controller="modals">
+      <div data-action="click->modals#close" data-url="<%= admin_phases_path %>" class="fixed inset-0 bg-gray-600 bg-opacity-50 z-40 "></div>
+      <div id="modal-content" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-lg md:max-w-xl lg:max-w-2xl px-4">
+        <div class="bg-white rounded-lg shadow-lg p-6 w-full relative">
+          <button id="close-modal" data-action="modals#close" data-url="<%= admin_phases_path %>" class="absolute top-2 right-2 text-gray-600 hover:text-gray-900">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <%= render "edit", phase: @phase %>
+        </div>
+      </div>
     </div>
   <% end %>
-</div>
+<% else %>
+  <div class="px-8 py-4">
+    <%= render "edit", phase: @phase %>
+  </div>
+<% end %>
