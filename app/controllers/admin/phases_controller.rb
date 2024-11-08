@@ -123,6 +123,8 @@ module Admin
 
     def set_phase
       @phase = Phase.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to admin_phases_path, flash: { danger: "Fase do projeto n\u00E3o encontrado." }
     end
 
     def phase_params

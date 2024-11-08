@@ -44,6 +44,7 @@ group :development do
   gem "factory_bot_rails", "~> 6.4.3" # Factory_bot is a fixtures replacement with a straightforward definition syntax
   gem "faker", "~> 3.4.2" # Faker is a port of Perl's Data::Faker library. It's a library for generating fake data such as names, addresses, and phone numbers.
   gem "lol_dba", "~> 2.4.0" # lol_dba is a small package of rake tasks that scan your application models and displays a list of columns that probably should be indexed
+  gem "pagy", "~> 9.2.0" # The ultimate pagination ruby gem
   gem "pghero", "~> 3.6.0" # A performance dashboard for Postgres
   gem "pg_query", "~> 5.1.0" # Parse and analyze SQL queries in Ruby
   gem "rack-mini-profiler" # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]

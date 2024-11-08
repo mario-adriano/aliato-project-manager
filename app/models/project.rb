@@ -31,4 +31,5 @@ class Project < ApplicationRecord
   belongs_to :phase, counter_cache: true
 
   has_many :project_files, dependent: :destroy
+  has_many :daily_reports, dependent: :destroy
 end

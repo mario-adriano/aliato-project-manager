@@ -1,4 +1,5 @@
 <div class="px-8 py-4 mx-auto">
+  <%= render 'layouts/flash' %>
   <h1 class="text-2xl font-bold mb-4">Projeto - <%= @project.id %></h1>
 
   <%= turbo_frame_tag "phase_dropdown" do %>
@@ -25,6 +26,16 @@
         </div>
       <% end %>
     </div>
+  <% end %>
+
+  <br>
+
+  <% unless @project.phase.is_end %>
+    <%= form_with url: generate_link_admin_operators_project_daily_reports_path(@project), method: :post, local: true, data: { turbo: false } do |f| %>
+      <%= f.label :date, 'Data do Diário de Obra' %>
+      <%= f.date_field :date, value: Date.today %>
+      <%= f.submit 'Gerar', class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded' %>
+    <% end %>
   <% end %>
 
   <br>
@@ -91,6 +102,10 @@
       <%= f.label :description, 'Observação', class: 'block text-gray-700 font-medium mb-2' %>
       <%= f.text_area :description, style: 'height: 200px;', class: 'w-custom-752 max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange', disabled: @project.phase.is_end ? 'disabled' : nil %>
     </div>
+
+    <%= turbo_frame_tag "daily_reports", src: load_daily_reports_admin_operators_project_path(@project, format: :turbo_stream), loading: :lazy do %>
+      Carregando...
+    <% end %>
 
     <% unless @project.phase.is_end %>
       <div class="flex items-center space-x-4">

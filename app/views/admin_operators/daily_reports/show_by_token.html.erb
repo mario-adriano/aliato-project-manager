@@ -1,0 +1,52 @@
+<div class="px-8 py-4 mx-auto">
+  <% if !current_user&.operator? && @daily_report.completed_at.present? %>
+    <div class="bg-green-100 text-green-800 px-4 py-3 rounded-lg">
+    <p>Este formulário já foi preenchido em <%= @daily_report.completed_at.strftime('%d/%m/%Y %H:%M') %>. Obrigado!</p>
+    </div>
+  <% else %>
+    <%= form_with scope: :daily_report, url: admin_operators_daily_report_update_by_token_path(token: @daily_report.token), method: :patch do |f| %>
+      <div class="mb-4">
+        <h2 class="font-bold text-lg mb-2">Relatório Diário de Obra</h2>
+      </div>
+
+      <div class="mb-4">
+        <h3 class="font-bold mb-2">Condições do Tempo</h3>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <%= f.label :morning_condition, 'Manhã', class: 'block text-gray-700 font-medium mb-2' %>
+            <%= f.text_field :morning_condition, class: 'w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-customOrange' %>
+          </div>
+          <div>
+              <%= f.label :afternoon_condition, 'Tarde', class: 'block text-gray-700 font-medium mb-2' %>
+              <%= f.text_field :afternoon_condition, class: 'w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-customOrange' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <h3 class="font-bold mb-2">Mão de Obra</h3>
+        <%= f.text_area :labor, placeholder: 'Descreva a mão de obra disponível', class: 'w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-customOrange' %>
+      </div>
+
+      <div class="mb-4">
+        <h3 class="font-bold mb-2">Equipamentos</h3>
+        <%= f.text_area :equipment, placeholder: 'Descreva os equipamentos utilizados', class: 'w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-customOrange' %>
+      </div>
+
+      <div class="mb-4">
+        <h3 class="font-bold mb-2">Atividades</h3>
+        <%= f.text_area :activities, placeholder: 'Descreva as atividades realizadas', class: 'w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-customOrange' %>
+      </div>
+
+      <div class="mb-4">
+        <h3 class="font-bold mb-2">Ocorrências/Observações</h3>
+        <%= f.text_area :occurrences, placeholder: 'Descreva as ocorrências e observações', class: 'w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-customOrange' %>
+      </div>
+
+      <div class="flex items-center space-x-4">
+        <%= f.submit 'Salvar Diário de Obra', class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded' %>
+        <button type="reset" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Resetar</button>
+      </div>
+    <% end %>
+  <% end %>
+</div>

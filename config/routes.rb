@@ -12,6 +12,13 @@ Rails.application.routes.draw do
     # end
   end
 
+  namespace :admin_operators do
+    resources :daily_reports, only: [] do
+      get "access/:token", to: "daily_reports#show_by_token", as: "access", on: :collection
+    end
+    patch "daily_reports/update_by_token/:token", to: "daily_reports#update_by_token", as: "daily_report_update_by_token"
+  end
+
   authenticate :user, ->(user) { user.admin? } do
     draw :admin
   end

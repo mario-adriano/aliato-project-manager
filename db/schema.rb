@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_05_200653) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_06_224626) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -33,6 +33,26 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_05_200653) do
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_clients_on_deleted_at"
+  end
+
+  create_table "daily_reports", force: :cascade do |t|
+    t.date "date"
+    t.string "morning_condition"
+    t.string "afternoon_condition"
+    t.text "observations"
+    t.bigint "project_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "token"
+    t.text "labor"
+    t.text "equipment"
+    t.text "activities"
+    t.text "occurrences"
+    t.datetime "completed_at"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_daily_reports_on_deleted_at"
+    t.index ["project_id"], name: "index_daily_reports_on_project_id"
+    t.index ["token"], name: "index_daily_reports_on_token"
   end
 
   create_table "phases", force: :cascade do |t|
@@ -92,6 +112,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_05_200653) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "daily_reports", "projects"
   add_foreign_key "project_files", "projects"
   add_foreign_key "projects", "clients"
   add_foreign_key "projects", "phases"

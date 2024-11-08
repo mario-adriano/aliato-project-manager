@@ -1,5 +1,10 @@
 module AdminOperators
   class ProjectsController < ApplicationController
+    include Pagy::Backend
+
+    Pagy::DEFAULT[:limit] = 5
+    Pagy::DEFAULT[:size]  = 19
+
     before_action :authenticate_user!
     before_action :set_client, only: [ :new, :create ]
     before_action :set_project, only: [ :edit, :update ]
@@ -58,6 +63,11 @@ module AdminOperators
 
     def edit
       @client = @project.client
+    end
+
+    def load_daily_reports
+      @project = Project.find(params[:id])
+      @pagy, @daily_reports = pagy(@project.daily_reports.order(date: :desc))
     end
 
     def update
