@@ -1,4 +1,4 @@
-require "pagy"
+require "pagy/extras/headers"
 
 module ApplicationHelper
   include Pagy::Frontend
