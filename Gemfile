@@ -13,6 +13,7 @@ gem "foreman", "~> 0.88.1"  # Manage Procfile-based applications
 gem "importmap-rails" # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "jbuilder" # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "kredis" # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
+gem "pagy", "~> 9.2.0" # The ultimate pagination ruby gem
 gem "paranoia", "~> 3.0.0" # Soft delete for ActiveRecord
 gem "pg", "~> 1.5" # Use PostgreSQL as the database for Active Record
 gem "puma", ">= 5.0" # Use the Puma web server [https://github.com/puma/puma]
@@ -44,7 +45,6 @@ group :development do
   gem "factory_bot_rails", "~> 6.4.3" # Factory_bot is a fixtures replacement with a straightforward definition syntax
   gem "faker", "~> 3.4.2" # Faker is a port of Perl's Data::Faker library. It's a library for generating fake data such as names, addresses, and phone numbers.
   gem "lol_dba", "~> 2.4.0" # lol_dba is a small package of rake tasks that scan your application models and displays a list of columns that probably should be indexed
-  gem "pagy", "~> 9.2.0" # The ultimate pagination ruby gem
   gem "pghero", "~> 3.6.0" # A performance dashboard for Postgres
   gem "pg_query", "~> 5.1.0" # Parse and analyze SQL queries in Ruby
   gem "rack-mini-profiler" # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
