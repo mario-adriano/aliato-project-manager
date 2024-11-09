@@ -1,5 +1,3 @@
-require "pagy/extras/headers"
-
 module ApplicationHelper
-  include Pagy::Frontend
+  # include Pagy::Frontend
 end
