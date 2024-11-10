@@ -56,8 +56,8 @@ module AdminOperators
 
       if @daily_report.persisted?
         link = access_admin_operators_daily_reports_url(@project, token: @daily_report.token)
-        flash[:notice] = "Link gerado: #{link}"
-        redirect_to edit_admin_operators_project_path(@project), flash: { success: "Link gerado: #{link}" }
+        flash[:notice] = "#{link}"
+        redirect_to edit_admin_operators_project_path(@project), flash: { link: "#{link}" }
       else
         redirect_to edit_admin_operators_project_path(@project), flash: { danger: "Erro ao gerar o link." }
       end
