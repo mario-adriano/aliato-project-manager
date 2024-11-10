@@ -2,3 +2,7 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "channels"
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/service-worker.js");
+}

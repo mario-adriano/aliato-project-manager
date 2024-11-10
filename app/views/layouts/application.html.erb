@@ -8,6 +8,8 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= favicon_link_tag asset_path('favicon.png') %>
+    <link rel="icon" href="/assets/logo-pwa.png" type="image/png">
+    <%= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
     <%#= debugbar_head %>
   </head>
   <body>
