@@ -84,7 +84,7 @@
         <%= f.text_area :description, style: 'height: 200px;', class: "w-custom-752 max-w-full #{ 'bg-gray-200' if @project.phase.is_end } px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange", disabled: @project.phase.is_end ? 'disabled' : nil %>
       </div>
 
-      <h2 class="text-2xl font-bold mb-4">Arquivos</h1>
+      <h2 class="text-xl font-bold mb-4">Arquivos</h1>
 
       <div>
         <%= label_tag :files, 'Adicionar arquivos', class: "block text-sm font-medium text-gray-700" %>
@@ -96,7 +96,7 @@
       <% end %>
     </div>
 
-    <h2 class="text-2xl font-bold mb-4">Diário de Obra</h1>
+    <h2 class="text-xl font-bold mb-4">Diário de Obra</h1>
 
     <%= turbo_frame_tag "daily_reports", src: load_daily_reports_admin_operators_project_path(@project, format: :turbo_stream), loading: :lazy do %>
       <%= render "table_loading" %>

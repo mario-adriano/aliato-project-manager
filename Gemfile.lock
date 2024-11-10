@@ -140,6 +140,7 @@ GEM
     google-protobuf (4.28.2-x86_64-linux)
       bigdecimal
       rake (>= 13)
+    htmlbeautifier (1.4.3)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.0.3)
@@ -400,6 +401,7 @@ DEPENDENCIES
   faker (~> 3.4.2)
   font-awesome-sass (~> 6.5.2)
   foreman (~> 0.88.1)
+  htmlbeautifier (~> 1.4.3)
   importmap-rails
   jbuilder
   kredis

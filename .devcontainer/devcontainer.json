@@ -19,7 +19,8 @@
         "marcoroth.stimulus-lsp",
         "janne252.fontawesome-autocomplete",
         "ms-azuretools.vscode-docker",
-        "bradlc.vscode-tailwindcss"
+        "bradlc.vscode-tailwindcss",
+        "aliariff.vscode-erb-beautify"
       ]
     }
   },
