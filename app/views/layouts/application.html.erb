@@ -1,31 +1,39 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>Aliato Project Manager</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <%= csrf_meta_tags %> <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %> 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %> 
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= favicon_link_tag asset_path('favicon.png') %>
     <%#= debugbar_head %>
-  </head>
-  <body>
+</head>
+
+<body>
     <main>
-      <% if user_signed_in?%>
+        <% if user_signed_in?%>
         <div class="flex">
-          <%= render 'layouts/sidebar' %>
-          <div class="flex flex-col w-full min-h-screen">
-            <%= render 'layouts/header' %>
-            <div class="h-full">
-              <%= yield %>
+            <%= render 'layouts/sidebar' %>
+            <div class="flex flex-col w-full min-h-screen">
+                <%= render 'layouts/header' %>
+                <div id="application-body" class="h-full">
+                    <%= yield %>
+                </div>
             </div>
-          </div>
         </div>
-      <% else %>
+        <% else %>
         <%= yield %>
-      <% end %>
+        <% end %>
     </main>
     <%#= debugbar_body %>
-  </body>
+    <script>
+        document.getElementById('application-body').addEventListener('click', () =>
+            document.getElementById('menu').classList.add('hidden')
+        );
+    </script>
+</body>
+
 </html>
