@@ -47,68 +47,63 @@
 
     <div class="mb-4">
       <%= label_tag :name, (@client.type == 'Company' ? 'Razão Social': 'Nome'), class: 'block text-gray-700 font-medium mb-2' %>
-      <%= text_field_tag :name, @client.name, disabled: true, class: 'w-custom-752 max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
+      <%= text_field_tag :name, @client.name, disabled: true, class: 'w-custom-752 max-w-full bg-gray-200 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
     </div>
 
     <% if @client.type == 'Company' %>
       <div class="mb-4">
         <%= label_tag :company_name, 'Nome Fantasia', class: 'block text-gray-700 font-medium mb-2' %>
-        <%= text_field_tag :company_name, @client.company_name, disabled: true, class: 'w-custom-752 max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
+        <%= text_field_tag :company_name, @client.company_name, disabled: true, class: 'w-custom-752 max-w-full bg-gray-200 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
       </div>
     <% end %>
 
     <div class="mb-4">
       <%= label_tag :document_number, (@client.type == 'Company' ? 'CNPJ': 'CPF'), class: 'block text-gray-700 font-medium mb-2' %>
-      <%= text_field_tag :document_number, @client.document_number, disabled: true, class: 'w-custom-752 max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
+      <%= text_field_tag :document_number, @client.document_number, disabled: true, class: 'w-custom-752 max-w-full bg-gray-200 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
     </div>
 
     <div class="mb-4">
       <%= label_tag :email, 'E-mail', class: 'block text-gray-700 font-medium mb-2' %>
-      <%= text_field_tag :email, @client.email, disabled: true, class: 'w-custom-752 max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
+      <%= text_field_tag :email, @client.email, disabled: true, class: 'w-custom-752 max-w-full bg-gray-200 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
     </div>
 
     <div class="mb-4">
       <%= label_tag :phone, 'Telefone', class: 'block text-gray-700 font-medium mb-2' %>
-      <%= text_field_tag :phone, @client.phone, disabled: true, class: 'w-custom-752 max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
+      <%= text_field_tag :phone, @client.phone, disabled: true, class: 'w-custom-752 max-w-full bg-gray-200 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
     </div>
 
     <div class="mb-4">
       <%= label_tag :created_at, 'Data da criação', class: 'block text-gray-700 font-medium mb-2' %>
-      <%= text_field_tag :created_at, @project.created_at.strftime('%d/%m/%Y - %H:%M'), disabled: true, class: 'w-custom-752 max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
+      <%= text_field_tag :created_at, @project.created_at.strftime('%d/%m/%Y - %H:%M'), disabled: true, class: 'w-custom-752 max-w-full bg-gray-200 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
     </div>
 
     <div class="flex flex-col space-y-4 w-custom-752 max-w-full" style="margin-bottom:12px;">
+
+      <div class="mb-4">
+        <%= f.label :description, 'Observação', class: 'block text-gray-700 font-medium mb-2' %>
+        <%= f.text_area :description, style: 'height: 200px;', class: "w-custom-752 max-w-full #{ 'bg-gray-200' if @project.phase.is_end } px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange", disabled: @project.phase.is_end ? 'disabled' : nil %>
+      </div>
+
+      <h2 class="text-2xl font-bold mb-4">Arquivos</h1>
+
       <div>
         <%= label_tag :files, 'Adicionar arquivos', class: "block text-sm font-medium text-gray-700" %>
         <%= f.file_field :files, multiple: true, name: "project[files][]", class: "block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" %>
       </div>
 
-      <% @project.project_files.each do |project_file| %>
-        <div class="flex items-center justify-between bg-white shadow-sm p-3 rounded-lg mb-2">
-          <div class="flex items-center space-x-3">
-            <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V7l-5-5H7a2 2 0 00-2 2v16a2 2 0 002 2z"></path></svg>
-            <span class="font-medium text-gray-800 truncate" style="margin-top:8px">
-              <%= project_file.file_name %>
-            </span>
-          </div>
-          <a href="<%= download_project_project_file_path(project_file) %>" class="text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out">
-            Download
-          </a>
-        </div>
+      <%= turbo_frame_tag "project_files_lazy", src: load_project_files_admin_operators_project_path(@project, format: :turbo_stream), loading: :lazy do %>
+        <%= render "project_files_loading" %>
       <% end %>
     </div>
 
-    <div class="mb-4">
-      <%= f.label :description, 'Observação', class: 'block text-gray-700 font-medium mb-2' %>
-      <%= f.text_area :description, style: 'height: 200px;', class: 'w-custom-752 max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange', disabled: @project.phase.is_end ? 'disabled' : nil %>
-    </div>
+    <h2 class="text-2xl font-bold mb-4">Diário de Obra</h1>
 
     <%= turbo_frame_tag "daily_reports", src: load_daily_reports_admin_operators_project_path(@project, format: :turbo_stream), loading: :lazy do %>
-      Carregando...
+      <%= render "table_loading" %>
     <% end %>
 
     <% unless @project.phase.is_end %>
-      <div class="flex items-center space-x-4">
+      <div class="flex items-center space-x-4 mt-4">
         <%= f.submit 'Atualizar', class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded' %>
         <button type="reset" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Resetar</button>
       </div>

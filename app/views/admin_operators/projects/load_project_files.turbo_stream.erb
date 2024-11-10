@@ -1,0 +1,5 @@
+<%= turbo_stream.replace "project_files_lazy" do %>
+  <div id="project_files_lazy">
+    <%= render "project_files_table", pagy: @pagy, project_files: @project_files, project: @project %>
+  </div>
+<% end %>

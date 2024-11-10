@@ -17,9 +17,14 @@ namespace :admin_operators do
       get :load_daily_reports
     end
 
+    member do
+      get :load_project_files
+    end
+
     resources :project_files, only: [] do
       member do
         get "download", to: "projects#download_file"
+        delete "destroy", to: "projects#destroy_project_files"
       end
     end
 

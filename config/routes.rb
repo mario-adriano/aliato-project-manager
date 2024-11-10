@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "home#index"
 
-  get "/up", to: proc { [ 200, {}, [ "ok" ] ] }, as: :rails_health_check
+  get "/up", to: proc { [ 200, {}, [ "OK" ] ] }
 
   if Rails.env.development?
     mount PgHero::Engine, at: "pghero"

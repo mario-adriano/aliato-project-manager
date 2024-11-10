@@ -9,6 +9,9 @@ module AdminOperators
     before_action :set_client, only: [ :new, :create ]
     before_action :set_project, only: [ :edit, :update ]
 
+    # TODO: Alterar a forma de exclusão de arquivos
+    skip_before_action :verify_authenticity_token, only: :destroy_project_files
+
     def index
       @projects = Project.order("created_at DESC").includes(:client, :phase)
 
@@ -70,6 +73,11 @@ module AdminOperators
       @pagy, @daily_reports = pagy(@project.daily_reports.order(date: :desc))
     end
 
+    def load_project_files
+      @project = Project.find(params[:id])
+      @pagy, @project_files = pagy(@project.project_files.order(created_at: :desc))
+    end
+
     def update
       if !@project.phase.is_end && @project.update(update_project_params)
         if params[:project][:files][1]
@@ -93,6 +101,14 @@ module AdminOperators
     def download_file
       project_file = ProjectFile.find(params[:project_id])
       send_data project_file.file_data, filename: project_file.file_name, type: "application/octet-stream", disposition: "attachment"
+    end
+
+    def destroy_project_files
+      if Project.find_by(id: params[:project_id])&.project_files.find_by(id: params[:id])&.destroy
+        redirect_to edit_admin_operators_project_path(Project.find_by(id: params[:project_id])), flash: { success:  "Arquivo deletado com sucesso." }
+      else
+        redirect_to edit_admin_operators_project_path(Project.find_by(id: params[:project_id])), flash: { danger: "N\u00E3o \u00E9 poss\u00EDvel deletar Arquivo" }
+      end
     end
 
     private

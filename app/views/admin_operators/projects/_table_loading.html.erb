@@ -1,0 +1,25 @@
+<div class="space-y-4 w-custom-752 max-w-full">
+  <!-- Cabeçalho da tabela -->
+  <div class="grid grid-cols-4 gap-4 p-2 border-b-2 border-gray-200">
+    <div class="h-6 bg-gray-300 rounded w-full"></div>
+    <div class="h-6 bg-gray-300 rounded w-full"></div>
+    <div class="h-6 bg-gray-300 rounded w-full"></div>
+    <div class="h-6 bg-gray-300 rounded w-full"></div>
+  </div>
+
+  <!-- Linhas de carregamento -->
+  <div class="space-y-2 animate-pulse">
+    <% 5.times do %>
+      <div class="grid grid-cols-4 gap-4 p-2">
+        <div class="h-6 bg-gray-200 rounded w-full"></div>
+        <div class="h-6 bg-gray-200 rounded w-full"></div>
+        <div class="h-6 bg-gray-200 rounded w-full"></div>
+        <div class="flex space-x-2">
+          <div class="h-6 bg-blue-300 rounded w-12"></div>
+          <div class="h-6 bg-blue-300 rounded w-12"></div>
+          <div class="h-6 bg-red-300 rounded w-12"></div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

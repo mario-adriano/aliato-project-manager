@@ -3,6 +3,7 @@ module AdminOperators
     before_action :set_project, only: [ :new, :create, :edit, :update, :generate_link, :destroy ]
 
     skip_before_action :authenticate_user!, only: [ :show_by_token, :update_by_token ]
+    # TODO: Alterar a forma de exclusão de daily_reports
     skip_before_action :verify_authenticity_token, only: :destroy
 
     def new

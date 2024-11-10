@@ -1,0 +1,47 @@
+<table class="w-custom-752 max-w-full bg-white mb-4">
+  <thead>
+    <tr class="border-b border-gray-200">
+      <th class="py-2 pr-4 text-left text-nowrap">Nome</th>
+      <th class="py-2 pr-4 text-left text-nowrap">Data</th>
+      <th class="py-2 pr-4 text-left text-nowrap">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% project_files.each do |project_file| %>
+      <tr class="border-b border-gray-200">
+        <td class="py-2 pr-4"><%= project_file.file_name %></td>
+        <td class="py-2 pr-4"><%= l(project_file.created_at, format: "%d/%m/%Y") %></td>
+        <td class="py-2 pr-4">
+          <%= link_to "Download", download_admin_operators_project_project_file_path(project_file), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded text-nowrap' %>
+          <button type="button" onclick="openProjectFileModal(<%= project_file.id %>, <%= project.id %>)" class="px-2 py-1 font-bold text-white bg-red-500 rounded hover:bg-red-600">Excluir</button>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% if pagy && pagy.pages > 1 %>
+  <%== pagy_nav(@pagy, anchor_string: 'data-turbo-frame="project_files_lazy" data-turbo-prefetch="false"') %>
+<% end %>
+
+<!-- Modal -->
+<div id="deleteProjectFileModal" class="fixed inset-0 flex items-center justify-center hidden bg-black bg-opacity-50">
+  <div class="p-8 bg-white rounded-lg shadow-lg">
+    <h2 class="mb-4 text-xl font-bold">Confirmação de Exclusão</h2>
+    <p class="mb-4">Tem certeza de que deseja excluir este Arquivo?</p>
+    <div class="flex justify-end space-x-4">
+      <button type="button" onclick="closeProjectFileModal()" class="px-4 py-2 font-bold text-white bg-gray-500 rounded hover:bg-gray-600">Cancelar</button>
+      <%= button_to 'Confirmar', '', method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded', id: 'deleteButton' %>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openProjectFileModal(projectFileId, projectId) {
+    document.getElementById('deleteProjectFileModal').classList.remove('hidden');
+    document.getElementById('deleteButton').setAttribute('formaction', `/admin_operators/projects/${projectId}/project_files/${projectFileId}/destroy`);
+  }
+
+  function closeProjectFileModal() {
+    document.getElementById('deleteProjectFileModal').classList.add('hidden');
+  }
+</script>

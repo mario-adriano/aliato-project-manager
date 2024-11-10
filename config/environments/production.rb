@@ -50,11 +50,18 @@ Rails.application.configure do
   # Can be used together with config.force_ssl for Strict-Transport-Security and secure cookies.
   # config.assume_ssl = true
 
+  # config.hosts.clear
+  config.force_ssl = true
+  # config.ssl_options = { redirect: { exclude: ->(request) { request.headers["X-Forwarded-Proto"] == "https" } } }
+
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = false
+  # config.force_ssl = false
+
+  # Prevent health checks from clogging up the logs.
+  # config.silence_healthcheck_path = "/up"
 
   # Skip http-to-https redirect for the default health check endpoint.
-  # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
+  config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
 
   # Log to STDOUT by default
   config.logger = ActiveSupport::Logger.new(STDOUT)
