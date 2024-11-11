@@ -51,7 +51,7 @@ Rails.application.configure do
   # config.assume_ssl = true
 
   # config.hosts.clear
-  config.force_ssl = true
+  config.force_ssl = false
   # config.ssl_options = { redirect: { exclude: ->(request) { request.headers["X-Forwarded-Proto"] == "https" } } }
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
@@ -61,7 +61,7 @@ Rails.application.configure do
   # config.silence_healthcheck_path = "/up"
 
   # Skip http-to-https redirect for the default health check endpoint.
-  config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
+  # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
 
   # Log to STDOUT by default
   config.logger = ActiveSupport::Logger.new(STDOUT)
