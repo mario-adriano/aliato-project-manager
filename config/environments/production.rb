@@ -51,9 +51,9 @@ Rails.application.configure do
   # config.assume_ssl = true
 
   # config.hosts.clear
-  config.force_ssl = true
+  # config.force_ssl = true
 
-  config.assume_ssl = true
+  # config.assume_ssl = true
   # config.ssl_options = { redirect: { exclude: ->(request) { request.headers["X-Forwarded-Proto"] == "https" } } }
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
