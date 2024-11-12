@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
+require "rubocop"
+
 module RuboCop
   module Cop
     module Custom
-      class FindByNilCheck < Base
+      class FindByNilCheck < RuboCop::Cop::Base
         MSG = <<~MSG.strip
           Always check for nil or use appropriate verification when using the object returned by find_by.
           Examples of incorrect usage:

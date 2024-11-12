@@ -1,4 +1,5 @@
 require_relative "../../config/environment" unless defined?(Rails)
+require "rubocop"
 
 module RuboCop
   module Cop
