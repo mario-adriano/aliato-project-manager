@@ -86,10 +86,12 @@
 
       <h2 class="text-xl font-bold mb-4">Arquivos</h1>
 
-      <div>
-        <%= label_tag :files, 'Adicionar arquivos', class: "block text-sm font-medium text-gray-700" %>
-        <%= f.file_field :files, multiple: true, name: "project[files][]", class: "block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" %>
-      </div>
+      <% unless @project.phase.is_end %>
+        <div>
+          <%= label_tag :files, 'Adicionar arquivos', class: "block text-sm font-medium text-gray-700" %>
+          <%= f.file_field :files, multiple: true, name: "project[files][]", class: "block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" %>
+        </div>
+      <% end %>
 
       <%= turbo_frame_tag "project_files_lazy", src: load_project_files_admin_operators_project_path(@project, format: :turbo_stream), loading: :lazy do %>
         <%= render "project_files_loading" %>
@@ -110,3 +112,16 @@
     <% end %>
   <% end %>
 </div>
+
+<script>
+  document.addEventListener('click', function(event) {
+    const dropdown = document.getElementById('dropdown');
+    const button = document.querySelector('[data-action="dropdown#toggle"]');
+
+    if (dropdown && !dropdown.classList.contains('hidden')) {
+      if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+        dropdown.classList.add('hidden');
+      }
+    }
+  });
+</script>

@@ -4,11 +4,20 @@ const OFFLINE_URL = "offline.html";
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(new Request(OFFLINE_URL, {cache: "reload"}));
+      return cache.addAll([OFFLINE_URL]);
     })
   );
   self.skipWaiting();
 });
+
+// self.addEventListener("install", (event) => {
+//   event.waitUntil(
+//     caches.open(CACHE_NAME).then((cache) => {
+//       return cache.addAll(new Request(OFFLINE_URL, {cache: "reload"}));
+//     })
+//   );
+//   self.skipWaiting();
+// });
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(

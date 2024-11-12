@@ -12,6 +12,8 @@ module AdminOperators
     # TODO: Alterar a forma de exclusão de arquivos
     skip_before_action :verify_authenticity_token, only: :destroy_project_files
 
+    rescue_from ActiveRecord::RecordNotFound, with: :not_found
+
     def index
       @projects = Project.order("created_at DESC").includes(:client, :phase)
 
@@ -19,7 +21,7 @@ module AdminOperators
         @projects = @projects.where(client_id: client_id)
       elsif phase_id = params[:phase_id]
         @projects = @projects.where(phase_id: phase_id)
-        @phase = Phase.find(phase_id)
+        @phase = Phase.find_by_id(phase_id)
       else
         @projects = @projects.all
       end
@@ -81,9 +83,7 @@ module AdminOperators
     def update
       if !@project.phase.is_end && @project.update(update_project_params)
         if params[:project][:files][1]
-            # params[:project][:files].each do |file|
-            @project.project_files.create(file: params[:project][:files][1])
-          # end
+          @project.project_files.create(file: params[:project][:files][1])
         end
         redirect_to admin_operators_projects_path(phase_id: @project.phase.id)
       else
@@ -113,13 +113,20 @@ module AdminOperators
 
     private
 
+    def not_found
+      render file: "#{Rails.root}/public/404.html", layout: false, status: :not_found
+    end
+
     def set_client
       @client = Client.find(params[:client_id].to_i)
     end
 
     def set_project
       @project = Project.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      render file: "#{Rails.root}/public/404.html",  layout: false, status: :not_found
     end
+
 
     def project_params
       params.require(:project).permit(:description, :client_id)

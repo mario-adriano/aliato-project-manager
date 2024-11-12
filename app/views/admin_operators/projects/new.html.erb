@@ -7,29 +7,29 @@
 
     <div class="mb-4">
       <%= label_tag :name, (@client.type == 'Company' ? 'Razão Social': 'Nome'), class: 'block text-gray-700 font-medium mb-2' %>
-      <%= text_field_tag :name, @client.name, disabled: true, class: 'w-custom-752 max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
+      <%= text_field_tag :name, @client.name, disabled: true, class: 'w-custom-752 max-w-full bg-gray-200 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
     </div>
 
     <% if @client.type == 'Company' %>
       <div class="mb-4">
         <%= label_tag :company_name, 'Nome Fantasia', class: 'block text-gray-700 font-medium mb-2' %>
-        <%= text_field_tag :company_name, @client.company_name, disabled: true, class: 'w-custom-752 max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
+        <%= text_field_tag :company_name, @client.company_name, disabled: true, class: 'w-custom-752 max-w-full bg-gray-200 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
       </div>
     <% end %>
 
     <div class="mb-4">
       <%= label_tag :document_number, (@client.type == 'Company' ? 'CNPJ': 'CPF'), class: 'block text-gray-700 font-medium mb-2' %>
-      <%= text_field_tag :document_number, @client.document_number, disabled: true, class: 'w-custom-752 max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
+      <%= text_field_tag :document_number, @client.document_number, disabled: true, class: 'w-custom-752 max-w-full bg-gray-200 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
     </div>
 
     <div class="mb-4">
       <%= label_tag :email, 'E-mail', class: 'block text-gray-700 font-medium mb-2' %>
-      <%= text_field_tag :email, @client.email, disabled: true, class: 'w-custom-752 max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
+      <%= text_field_tag :email, @client.email, disabled: true, class: 'w-custom-752 max-w-full bg-gray-200 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
     </div>
 
     <div class="mb-4">
       <%= label_tag :phone, 'Telefone', class: 'block text-gray-700 font-medium mb-2' %>
-      <%= text_field_tag :phone, @client.phone, disabled: true, class: 'w-custom-752 max-w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
+      <%= text_field_tag :phone, @client.phone, disabled: true, class: 'w-custom-752 max-w-full bg-gray-200 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:ring-0 focus:border-customOrange' %>
     </div>
 
     <div class="mb-4">

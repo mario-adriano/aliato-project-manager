@@ -9,8 +9,8 @@
     <%= javascript_importmap_tags %>
     <%= favicon_link_tag asset_path('favicon.png') %>
     <link rel="icon" href="/assets/logo-pwa.png" type="image/png">
-    <%= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-    <%#= debugbar_head %>
+    <%= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) + "?v=1.1" %> 
+    <%= tag.link rel: "apple-touch-icon", href: asset_path('logo-pwa.png') %>
   </head>
   <body>
     <main>
