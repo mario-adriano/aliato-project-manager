@@ -12,6 +12,8 @@ module RuboCop
           receiver = node.receiver
           return unless active_record_model?(receiver)
 
+          return if rescue_from_record_not_found_configured?(node)
+
           unless within_rescue_context?(node)
             add_offense(node, message: MSG)
           end
@@ -48,6 +50,20 @@ module RuboCop
           else
             node.children.any? { |child| contains_rescue?(child) if child.is_a?(Parser::AST::Node) }
           end
+        end
+
+        def rescue_from_record_not_found_configured?(node)
+          exceptions = %w[ActiveRecord::RecordNotFound ActiveRecord::ActiveRecordError StandardError]
+
+          controller_node = node.each_ancestor(:class).find do |ancestor|
+            ancestor.descendants.any? do |child|
+              child.send_type? &&
+                child.method_name == :rescue_from &&
+                exceptions.include?(child.arguments.first.source)
+            end
+          end
+
+          !!controller_node
         end
       end
     end
